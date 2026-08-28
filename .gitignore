@@ -1,0 +1,10 @@
+.DS_Store
+Thumbs.db
+node_modules/
+.vercel
+.netlify
+*.log
+.env
+.env.*
+.vscode/*
+!.vscode/extensions.json
