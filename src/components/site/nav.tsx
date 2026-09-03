@@ -49,15 +49,13 @@ export function SiteNav() {
             </Link>
 
             <nav className="hidden items-center gap-6 lg:flex">
-              {NAV.map((l) => (
+              {NAV.filter((l) => l.to !== "/").map((l) => (
                 <Link
                   key={l.to}
                   to={l.to}
                   className={cn(
                     "text-sm transition-colors duration-150",
-                    pathname === l.to || (l.to !== "/" && pathname.startsWith(l.to))
-                      ? "text-fg"
-                      : "text-muted hover:text-fg",
+                    pathname === l.to || pathname.startsWith(l.to) ? "text-fg" : "text-muted hover:text-fg",
                   )}
                 >
                   {l.label}
@@ -103,7 +101,9 @@ export function SiteNav() {
           >
             <div className="flex items-center justify-between border-b border-border px-6 py-4 text-subtle font-mono text-2xs tracking-[0.18em] uppercase">
               <span>Navigation</span>
-              <span>00 — 07</span>
+              <span>
+                00 — {String(NAV.length - 1).padStart(2, "0")}
+              </span>
             </div>
             <nav className="flex flex-col gap-1 px-6 py-8 pb-12">
               {NAV.map((l, i) => (
@@ -137,22 +137,13 @@ export function SiteNav() {
 
 function Mark() {
   return (
-    <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden className="text-fg">
-      <rect
-        x="0.5"
-        y="0.5"
-        width="21"
-        height="21"
-        rx="5"
-        fill="none"
-        stroke="currentColor"
-        strokeOpacity="0.4"
-      />
+    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden className="text-fg">
+      <circle cx="12" cy="13.2" r="9.7" fill="none" stroke="currentColor" strokeOpacity="0.35" />
       <path
-        d="M5.3 6.1h1.8l1.75 6.6 1.75-6.6h1.8l-2.65 9.8H7.95L5.3 6.1Zm7.25 0h1.8l1.15 3.1 1.2-3.1h1.8l-2.1 5.25v4.55h-1.8v-4.55l-2.05-5.25Z"
+        d="M6.1 8.9h1.9l1.85 7 1.85-7h1.9l-2.8 10.4H8.9L6.1 8.9Zm7.65 0h1.9l1.2 3.3 1.25-3.3h1.9l-2.2 5.55v4.85h-1.9v-4.85l-2.05-5.55Z"
         fill="currentColor"
-        fillRule="evenodd"
       />
+      <path d="M12 1.5 13.2 3.9 12 5 10.8 3.9 12 1.5Z" fill="var(--vy-accent)" />
     </svg>
   );
 }

@@ -12,9 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as ServicesRouteImport } from './routes/services'
-import { Route as VenturesRouteImport } from './routes/ventures'
-import { Route as LabIndexRouteImport } from './routes/lab/index'
+import { Route as RayzorverseRouteImport } from './routes/rayzorverse'
 import { Route as WorkIndexRouteImport } from './routes/work/index'
 import { Route as WorkSlugRouteImport } from './routes/work/$slug'
 
@@ -33,19 +31,9 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const VenturesRoute = VenturesRouteImport.update({
-  id: '/ventures',
-  path: '/ventures',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LabIndexRoute = LabIndexRouteImport.update({
-  id: '/lab/',
-  path: '/lab/',
+const RayzorverseRoute = RayzorverseRouteImport.update({
+  id: '/rayzorverse',
+  path: '/rayzorverse',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WorkIndexRoute = WorkIndexRouteImport.update({
@@ -63,20 +51,16 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/services': typeof ServicesRoute
-  '/ventures': typeof VenturesRoute
+  '/rayzorverse': typeof RayzorverseRoute
   '/work/$slug': typeof WorkSlugRoute
-  '/lab/': typeof LabIndexRoute
   '/work/': typeof WorkIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/services': typeof ServicesRoute
-  '/ventures': typeof VenturesRoute
+  '/rayzorverse': typeof RayzorverseRoute
   '/work/$slug': typeof WorkSlugRoute
-  '/lab': typeof LabIndexRoute
   '/work': typeof WorkIndexRoute
 }
 export interface FileRoutesById {
@@ -84,42 +68,23 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/services': typeof ServicesRoute
-  '/ventures': typeof VenturesRoute
+  '/rayzorverse': typeof RayzorverseRoute
   '/work/$slug': typeof WorkSlugRoute
-  '/lab/': typeof LabIndexRoute
   '/work/': typeof WorkIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
-    | '/about'
-    | '/contact'
-    | '/services'
-    | '/ventures'
-    | '/work/$slug'
-    | '/lab/'
-    | '/work/'
+    '/' | '/about' | '/contact' | '/rayzorverse' | '/work/$slug' | '/work/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/about'
-    | '/contact'
-    | '/services'
-    | '/ventures'
-    | '/work/$slug'
-    | '/lab'
-    | '/work'
+  to: '/' | '/about' | '/contact' | '/rayzorverse' | '/work/$slug' | '/work'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
-    | '/services'
-    | '/ventures'
+    | '/rayzorverse'
     | '/work/$slug'
-    | '/lab/'
     | '/work/'
   fileRoutesById: FileRoutesById
 }
@@ -127,10 +92,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
-  ServicesRoute: typeof ServicesRoute
-  VenturesRoute: typeof VenturesRoute
+  RayzorverseRoute: typeof RayzorverseRoute
   WorkSlugRoute: typeof WorkSlugRoute
-  LabIndexRoute: typeof LabIndexRoute
   WorkIndexRoute: typeof WorkIndexRoute
 }
 
@@ -157,25 +120,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ventures': {
-      id: '/ventures'
-      path: '/ventures'
-      fullPath: '/ventures'
-      preLoaderRoute: typeof VenturesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/lab/': {
-      id: '/lab/'
-      path: '/lab'
-      fullPath: '/lab/'
-      preLoaderRoute: typeof LabIndexRouteImport
+    '/rayzorverse': {
+      id: '/rayzorverse'
+      path: '/rayzorverse'
+      fullPath: '/rayzorverse'
+      preLoaderRoute: typeof RayzorverseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/work/': {
@@ -199,10 +148,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
-  ServicesRoute: ServicesRoute,
-  VenturesRoute: VenturesRoute,
+  RayzorverseRoute: RayzorverseRoute,
   WorkSlugRoute: WorkSlugRoute,
-  LabIndexRoute: LabIndexRoute,
   WorkIndexRoute: WorkIndexRoute,
 }
 export const routeTree = rootRouteImport

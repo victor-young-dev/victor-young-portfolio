@@ -30,7 +30,7 @@ function Home() {
               </div>
               <div className="hero-portrait-mobile mx-auto mt-6 w-full max-w-[11rem] sm:max-w-[17rem] lg:mx-0">
                 <div className="hero-image-frame overflow-hidden rounded-2xl bg-bg-elevated shadow-[var(--shadow-border)] backdrop-blur-sm">
-                  <img src="/portrait.png" alt="Victor Young" className="aspect-portrait w-full object-cover" />
+                  <img src="/portrait.png" alt="Victor Young" className="aspect-[5/4] w-full object-cover" />
                 </div>
               </div>
               <div className="mt-8 flex max-w-xl flex-col gap-8 sm:mt-10">
@@ -58,7 +58,7 @@ function Home() {
                 <img
                   src="/portrait.png"
                   alt="Victor Young"
-                  className="aspect-portrait w-full object-cover"
+                  className="aspect-[5/4] w-full object-cover"
                 />
               </div>
             </Reveal>
@@ -146,7 +146,7 @@ function Home() {
               <div className="mb-10 flex items-end justify-between">
                 <h2 className="font-display text-4xl tracking-tight sm:text-5xl">RayzorVerse</h2>
                 <Button asChild variant="ghost" size="sm">
-                  <Link to="/ventures">
+                  <Link to="/rayzorverse">
                     The ecosystem
                     <ArrowUpRight />
                   </Link>
@@ -157,7 +157,7 @@ function Home() {
               {VENTURES.map((v, i) => (
                 <Reveal key={v.slug} delay={i * 0.06}>
                   <Link
-                    to="/ventures"
+                    to="/rayzorverse"
                     className="block rounded-2xl bg-bg-elevated p-6 shadow-[var(--shadow-border)] transition-[box-shadow] duration-200 hover:shadow-[var(--shadow-border-hover)]"
                   >
                     <p className="text-subtle font-mono text-2xs tracking-[0.16em] uppercase">{v.role}</p>

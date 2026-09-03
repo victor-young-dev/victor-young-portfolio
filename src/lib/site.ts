@@ -6,6 +6,8 @@ export const SITE = {
   tagline: "I build ideas into brands, products & digital experiences.",
   email: "rayzorverse@gmail.com",
   phones: ["+234 813 613 2727", "+234 901 112 2881"],
+  whatsapp: "https://wa.me/2348136132727",
+  cv: "/cv.pdf",
   location: "Available worldwide",
   market: "Design, technology, and ventures in motion",
   availability: "Open to collaboration, product roles, and venture partnerships",
@@ -15,6 +17,7 @@ export const SITE = {
   x: "https://x.com/I_amVic_tor",
 } as const;
 
+/** Shared shape for anything on the Work page — a Rayzor Labs product or a brand/client engagement. */
 export type WorkItem = {
   slug: string;
   title: string;
@@ -23,11 +26,13 @@ export type WorkItem = {
   arm: string;
   summary: string;
   body: string;
-  image: string;
+  image?: string;
   tags: string[];
   href?: string;
+  gallery: string[];
 };
 
+/** Rayzor Labs — the software products. */
 export const WORK: WorkItem[] = [
   {
     slug: "vendra",
@@ -40,6 +45,7 @@ export const WORK: WorkItem[] = [
     body: "Vendra is an all-in-one social commerce concept from Rayzor Labs. The brief is simple and hard: vendors should be able to earn trust in public, talk to a community, and run commerce without stitching five tools together. I’m leading product, interface, and the systems underneath as the platform takes shape.",
     image: "/work/vendra.jpg",
     tags: ["Social commerce", "Trust", "Product"],
+    gallery: [],
   },
   {
     slug: "kaabo",
@@ -53,6 +59,7 @@ export const WORK: WorkItem[] = [
     image: "/work/kaabo.jpg",
     tags: ["Nigeria", "Commerce", "Product"],
     href: "https://kaabonglaunch.netlify.app/",
+    gallery: [],
   },
   {
     slug: "resqnet",
@@ -65,26 +72,76 @@ export const WORK: WorkItem[] = [
     body: "ResQNet started as a final-year Computer Science project and is now a Rayzor Labs product. A mobile application already exists; the broader system — how people call for help, how responders see it, how the product stays calm under pressure — is still being built. It is the most serious thing I ship, and it is treated that way.",
     image: "/work/resqnet.jpg",
     tags: ["Emergency", "Mobile", "Security"],
+    gallery: [],
   },
 ];
 
-export const LAB_EXPLORING = [
+/**
+ * Brand & client work — BrandiLux's own showcase, plus everything delivered through it.
+ * Every item without a real screenshot yet renders an InitialTile instead of a fabricated image.
+ */
+export const CLIENT_WORK: WorkItem[] = [
   {
-    title: "Vendra × Kaabo commerce systems",
-    status: "Building",
-    copy: "Payments, trust, and vendor-verification patterns being prototyped across both social-commerce products before they ship wider.",
+    slug: "brandilux",
+    title: "BrandiLux",
+    year: "2025",
+    status: "Live",
+    arm: "BrandiLux",
+    summary: "Branding and digital experience — BrandiLux's own site, built as its flagship showcase.",
+    body: "BrandiLux is the creative and digital-services arm of RayzorVerse, and its own site is the clearest demonstration of the work: brand strategy, visual identity, and a premium digital experience built as one system rather than separate purchases. Delivered directly or with trusted collaborators, depending on scope.",
+    image: "/work/brandilux.jpg",
+    tags: ["Brand identity", "Web design", "Creative"],
+    href: "https://brandi-lux.netlify.app/",
+    gallery: [],
   },
   {
-    title: "AI-assisted content workflows",
-    status: "Exploring",
-    copy: "Testing where AI genuinely speeds up client and Apex Wright Lab work — documentation, drafts, media — without losing the human pass.",
+    slug: "mtx-resources",
+    title: "MTX Resources",
+    year: "2025 – Present",
+    status: "Client work",
+    arm: "IT / Digital & Creative",
+    summary: "Six months inside an IT department, then ongoing virtual support — graphics, video, and digital workflows.",
+    body: "A six-month SIWES placement in MTX Resources’ IT department that turned into ongoing virtual support: social media, content creation, graphics, short-form video, AI-assisted media, documentation, and data entry. Paid work, on-site and remote.",
+    tags: ["Digital operations", "Content", "Graphics"],
+    gallery: [],
   },
   {
-    title: "ResQNet response architecture",
-    status: "Prototype",
-    copy: "The system side of ResQNet: how a report becomes an alert becomes a response, redesigned since the final-year version.",
+    slug: "favour-link",
+    title: "Favour Link",
+    year: "2026",
+    status: "Client work",
+    arm: "Marketing & Brand",
+    summary: "Rebranding and digital marketing for a solar and electrical solutions business.",
+    body: "A short, paid engagement rebranding Favour Link Solar & Electrical Solutions: flyers, product catalogue visuals, WhatsApp marketing assets, short-form ads, customer messaging, and product organisation.",
+    tags: ["Branding", "Marketing"],
+    gallery: [],
+  },
+  {
+    slug: "dlovesoulclinic",
+    title: "DLoveSoulClinic",
+    year: "2023 – 2025",
+    status: "Client work",
+    arm: "Content & Video",
+    summary: "Social video and brand-consistent visuals across a three-month intensive.",
+    body: "Paid monthly creative support for DLoveSoulClinic: social video content, visual consistency, and platform-adapted creative across a three-month intensive engagement between 2023 and 2025.",
+    tags: ["Video", "Social content"],
+    gallery: [],
+  },
+  {
+    slug: "gbch",
+    title: "GBCH",
+    year: "2025",
+    status: "Volunteer",
+    arm: "God’s Beautiful Child Hub",
+    summary: "Volunteer graphics and digital content for a startup’s visual communication.",
+    body: "Volunteer creative support for God’s Beautiful Child Hub — graphics and digital content shaping the startup’s early visual communication.",
+    tags: ["Graphics", "Volunteer"],
+    gallery: [],
   },
 ];
+
+/** Every card on the Work page, for slug lookups on the detail route. */
+export const ALL_WORK: WorkItem[] = [...WORK, ...CLIENT_WORK];
 
 export type VentureItem = {
   slug: string;
@@ -228,7 +285,7 @@ export const CAPABILITIES = [
   },
 ];
 
-/** Ways I can help — framed by outcome, not tool. Reused on the Services page. */
+/** Ways I can help — framed by outcome, not tool. Reused as a compact band on the Work page. */
 export const SERVICES = [
   {
     title: "Product",
@@ -279,12 +336,14 @@ export const ACHIEVEMENTS = [
   "Amazon Kindle Direct Publishing — two summary books and one colouring book.",
 ];
 
+/**
+ * "Home" stays in this list for the footer and the mobile menu, which both want the
+ * full sitemap — the desktop bar filters it out itself since the logo already goes home.
+ */
 export const NAV = [
   { to: "/", label: "Home" },
   { to: "/work", label: "Work" },
-  { to: "/ventures", label: "Ventures" },
-  { to: "/services", label: "Services" },
-  { to: "/lab", label: "Lab" },
+  { to: "/rayzorverse", label: "RayzorVerse" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;

@@ -52,9 +52,14 @@ function AboutPage() {
                 </div>
               </Reveal>
               <Reveal delay={0.12}>
-                <Button asChild size="lg" className="mt-8 w-fit">
-                  <Link to="/contact">Work with me</Link>
-                </Button>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Button asChild size="lg">
+                    <Link to="/contact">Work with me</Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline">
+                    <Link to="/work">View my work</Link>
+                  </Button>
+                </div>
               </Reveal>
             </div>
           </div>
@@ -101,7 +106,14 @@ function AboutPage() {
           </div>
 
           <Reveal>
-            <h2 className="font-display mt-24 text-3xl tracking-tight sm:text-4xl">Experience</h2>
+            <div className="mt-24 flex flex-wrap items-end justify-between gap-4">
+              <h2 className="font-display text-3xl tracking-tight sm:text-4xl">Experience</h2>
+              <Button asChild variant="ghost" size="sm">
+                <a href={SITE.cv} target="_blank" rel="noreferrer">
+                  Download CV
+                </a>
+              </Button>
+            </div>
           </Reveal>
           <ol className="mt-8 divide-y divide-border border-y border-border">
             {EXPERIENCE.map((job) => (

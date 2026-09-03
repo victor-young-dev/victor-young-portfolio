@@ -1,13 +1,14 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import { WORK } from "@/lib/site";
+import { ALL_WORK } from "@/lib/site";
 import { PageShell } from "@/components/site/page-shell";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/reveal";
+import { InitialTile } from "@/components/site/initial-tile";
 
 export const Route = createFileRoute("/work/$slug")({
   loader: ({ params }) => {
-    const item = WORK.find((w) => w.slug === params.slug);
+    const item = ALL_WORK.find((w) => w.slug === params.slug);
     if (!item) throw notFound();
     return item;
   },
@@ -16,9 +17,9 @@ export const Route = createFileRoute("/work/$slug")({
 
 function WorkDetail() {
   const item = Route.useLoaderData();
-  const index = WORK.findIndex((w) => w.slug === item.slug);
-  const prev = index > 0 ? WORK[index - 1] : null;
-  const next = index >= 0 && index < WORK.length - 1 ? WORK[index + 1] : null;
+  const index = ALL_WORK.findIndex((w) => w.slug === item.slug);
+  const prev = index > 0 ? ALL_WORK[index - 1] : null;
+  const next = index >= 0 && index < ALL_WORK.length - 1 ? ALL_WORK[index + 1] : null;
 
   return (
     <PageShell>
@@ -48,7 +49,11 @@ function WorkDetail() {
 
           <Reveal delay={0.08}>
             <div className="mt-10 overflow-hidden rounded-2xl bg-bg-elevated shadow-[var(--shadow-border)]">
-              <img src={item.image} alt="" className="aspect-video w-full object-cover" />
+              {item.image ? (
+                <img src={item.image} alt="" className="aspect-video w-full object-cover" />
+              ) : (
+                <InitialTile title={item.title} className="aspect-video w-full" />
+              )}
             </div>
           </Reveal>
 
@@ -66,6 +71,25 @@ function WorkDetail() {
                 </div>
               </div>
             </div>
+          </Reveal>
+
+          <Reveal delay={0.16}>
+            <p className="text-subtle mt-16 font-mono text-2xs tracking-[0.16em] uppercase">Gallery</p>
+            {item.gallery.length > 0 ? (
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                {item.gallery.map((src) => (
+                  <div key={src} className="overflow-hidden rounded-xl bg-bg-elevated shadow-[var(--shadow-border)]">
+                    <img src={src} alt="" className="aspect-video w-full object-cover" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="mt-4 rounded-xl border border-dashed border-border p-8 text-center">
+                <p className="text-subtle text-sm">
+                  Screenshots and walkthroughs for {item.title} land here soon.
+                </p>
+              </div>
+            )}
           </Reveal>
 
           <div className="mt-16 flex flex-wrap justify-between gap-4 border-t border-border pt-8">

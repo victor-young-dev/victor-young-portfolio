@@ -4,9 +4,9 @@ import { COLLABORATIONS, ECOSYSTEM, LEADERSHIP, VENTURES } from "@/lib/site";
 import { PageShell } from "@/components/site/page-shell";
 import { Reveal } from "@/components/site/reveal";
 
-export const Route = createFileRoute("/ventures")({ component: VenturesPage });
+export const Route = createFileRoute("/rayzorverse")({ component: RayzorVersePage });
 
-function VenturesPage() {
+function RayzorVersePage() {
   return (
     <PageShell>
       <main className="px-5 pt-28 pb-24 sm:px-8 sm:pt-36 sm:pb-32">

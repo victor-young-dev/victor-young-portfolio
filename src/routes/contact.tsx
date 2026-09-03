@@ -69,6 +69,11 @@ function ContactPage() {
                   </Button>
                 </Magnetic>
                 <Button asChild size="lg" variant="outline">
+                  <a href={SITE.whatsapp} target="_blank" rel="noreferrer">
+                    WhatsApp
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="outline">
                   <a href={SITE.linkedin} target="_blank" rel="noreferrer">
                     LinkedIn
                   </a>
@@ -106,6 +111,44 @@ function ContactPage() {
                   Send a note
                 </Button>
               </form>
+            </Reveal>
+          </div>
+
+          <div className="mt-24 grid gap-4 sm:grid-cols-2">
+            <Reveal delay={0.08}>
+              <div className="h-full rounded-2xl bg-bg-elevated p-6 shadow-[var(--shadow-border)] sm:p-8">
+                <p className="text-subtle font-mono text-2xs tracking-[0.16em] uppercase">Show some love</p>
+                <h2 className="font-display mt-2 text-2xl tracking-tight">Support the work.</h2>
+                <p className="text-muted mt-3 text-sm leading-relaxed">
+                  A lot of what's here is built independently, through long nights and constant
+                  iteration. If something helped you or made you curious about what's next, say so.
+                </p>
+                <Button asChild variant="outline" className="mt-5">
+                  <a
+                    href={`mailto:${SITE.email}?subject=${encodeURIComponent("Show some love")}&body=${encodeURIComponent("Hi Victor — I wanted to say...")}`}
+                  >
+                    Send some love
+                  </a>
+                </Button>
+              </div>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <div className="h-full rounded-2xl bg-bg-elevated p-6 shadow-[var(--shadow-border)] sm:p-8">
+                <p className="text-subtle font-mono text-2xs tracking-[0.16em] uppercase">Backing RayzorVerse</p>
+                <h2 className="font-display mt-2 text-2xl tracking-tight">Interested in investing?</h2>
+                <p className="text-muted mt-3 text-sm leading-relaxed">
+                  RayzorVerse is building a connected ecosystem across software, brand, and knowledge
+                  services. If you're exploring venture partnerships or early backing, let's talk
+                  specifics.
+                </p>
+                <Button asChild className="mt-5">
+                  <a
+                    href={`mailto:${SITE.email}?subject=${encodeURIComponent("RayzorVerse — investment interest")}&body=${encodeURIComponent("Hi Victor — I'd like to learn more about backing RayzorVerse.")}`}
+                  >
+                    Talk investment
+                  </a>
+                </Button>
+              </div>
             </Reveal>
           </div>
         </div>
