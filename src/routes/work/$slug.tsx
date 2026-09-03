@@ -5,6 +5,7 @@ import { PageShell } from "@/components/site/page-shell";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/reveal";
 import { InitialTile } from "@/components/site/initial-tile";
+import { LiteYouTube } from "@/components/site/lite-youtube";
 
 export const Route = createFileRoute("/work/$slug")({
   loader: ({ params }) => {
@@ -77,9 +78,16 @@ function WorkDetail() {
             <p className="text-subtle mt-16 font-mono text-2xs tracking-[0.16em] uppercase">Gallery</p>
             {item.gallery.length > 0 ? (
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                {item.gallery.map((src) => (
-                  <div key={src} className="overflow-hidden rounded-xl bg-bg-elevated shadow-[var(--shadow-border)]">
-                    <img src={src} alt="" className="aspect-video w-full object-cover" />
+                {item.gallery.map((g, i) => (
+                  <div
+                    key={i}
+                    className="overflow-hidden rounded-xl bg-bg-elevated shadow-[var(--shadow-border)]"
+                  >
+                    {g.kind === "video" ? (
+                      <LiteYouTube youtubeId={g.youtubeId} title={g.title} />
+                    ) : (
+                      <img src={g.src} alt="" className="aspect-video w-full object-cover" />
+                    )}
                   </div>
                 ))}
               </div>

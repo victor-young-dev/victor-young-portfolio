@@ -17,6 +17,11 @@ export const SITE = {
   x: "https://x.com/I_amVic_tor",
 } as const;
 
+/** One gallery entry — a screenshot, or a click-to-play YouTube video. */
+export type GalleryItem =
+  | { kind: "image"; src: string }
+  | { kind: "video"; youtubeId: string; title?: string };
+
 /** Shared shape for anything on the Work page — a Rayzor Labs product or a brand/client engagement. */
 export type WorkItem = {
   slug: string;
@@ -29,7 +34,7 @@ export type WorkItem = {
   image?: string;
   tags: string[];
   href?: string;
-  gallery: string[];
+  gallery: GalleryItem[];
 };
 
 /** Rayzor Labs — the software products. */
@@ -45,7 +50,10 @@ export const WORK: WorkItem[] = [
     body: "Vendra is a social-commerce platform from Rayzor Labs, built around a simple idea: shopping should feel like following people, not browsing a catalogue. Vendors post into a feed, buyers follow the sellers they trust, and discovery, discounts, and checkout happen right inside that feed — no separate storefront to build or maintain. Currently piloting in Port Harcourt, with light and dark interfaces both built out. I’m leading product, interface, and the systems underneath as it grows toward wider markets.",
     image: "/work/vendra.png",
     tags: ["Social commerce", "Trust", "Product"],
-    gallery: ["/work/vendra-light.png"],
+    gallery: [
+      { kind: "video", youtubeId: "vdAhjhit1Fo", title: "Vendra — product walkthrough" },
+      { kind: "image", src: "/work/vendra-light.png" },
+    ],
   },
   {
     slug: "kaabo",
