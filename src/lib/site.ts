@@ -42,10 +42,10 @@ export const WORK: WorkItem[] = [
     arm: "Rayzor Labs",
     summary:
       "Global social commerce built around vendor trust, community, and the actual workflow of selling.",
-    body: "Vendra is an all-in-one social commerce concept from Rayzor Labs. The brief is simple and hard: vendors should be able to earn trust in public, talk to a community, and run commerce without stitching five tools together. I’m leading product, interface, and the systems underneath as the platform takes shape.",
-    image: "/work/vendra.jpg",
+    body: "Vendra is a social-commerce platform from Rayzor Labs, built around a simple idea: shopping should feel like following people, not browsing a catalogue. Vendors post into a feed, buyers follow the sellers they trust, and discovery, discounts, and checkout happen right inside that feed — no separate storefront to build or maintain. Currently piloting in Port Harcourt, with light and dark interfaces both built out. I’m leading product, interface, and the systems underneath as it grows toward wider markets.",
+    image: "/work/vendra.png",
     tags: ["Social commerce", "Trust", "Product"],
-    gallery: [],
+    gallery: ["/work/vendra-light.png"],
   },
   {
     slug: "kaabo",
@@ -159,7 +159,7 @@ export const VENTURES: VentureItem[] = [
     title: "Rayzor Labs",
     year: "2026",
     role: "Technology & product",
-    image: "/work/vendra.jpg",
+    image: "/work/vendra.png",
     copy: "The software division. Home of Vendra, Kaabo, and ResQNet — products designed, prototyped, and shipped from inside the ecosystem.",
   },
   {
