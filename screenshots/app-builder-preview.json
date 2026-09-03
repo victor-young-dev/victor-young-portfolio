@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Victor Young — Product Builder",
+      "hasCanvas": false,
+      "bodyTextLen": 1776,
+      "bodyTextHash": "4d54cac8e1d406226e05908e5171893db77b174d29c467b6853f092b86cf3cc3",
+      "bodyTextPrefix": "Victor Young Home Work Ventures About Lab Contact Let’s talk PRO",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Victor Young — Product Builder",
+      "hasCanvas": false,
+      "bodyTextLen": 1728,
+      "bodyTextHash": "eb63082d446836aa0bd277cac690c5e244ea95e1d87aab7d44f2ff0cd03fcae0",
+      "bodyTextPrefix": "Victor Young PRODUCT BUILDER · DESIGNER · DEVELOPER — NIGERIA Vi",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

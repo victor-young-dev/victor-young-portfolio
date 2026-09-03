@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/about",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Victor Young — Product Builder",
+      "hasCanvas": false,
+      "bodyTextLen": 3173,
+      "bodyTextHash": "12275e52109d30fb4728654a6f8c1936c882c85751e3dcaeb0d59a4aac6b6338",
+      "bodyTextPrefix": "Victor Young Home Work Ventures About Lab Contact Let’s talk ABO",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/about-page.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Victor Young — Product Builder",
+      "hasCanvas": false,
+      "bodyTextLen": 3125,
+      "bodyTextHash": "5278d3df47fa6927e0b021cc6e83994f2a07ccb1e91ffc840ddfc4dc5db8dcbd",
+      "bodyTextPrefix": "Victor Young ABOUT · VICTOR UZOR Product builder working the ful",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/about-page-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/about-page.json"
+}

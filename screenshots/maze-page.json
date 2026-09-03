@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/lab/maze",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Victor Young — Product Builder",
+      "hasCanvas": false,
+      "bodyTextLen": 247,
+      "bodyTextHash": "f1fa2c2245257fd9dc5e2dbf46920374d923b63ee43db48f0fb5b56bb1493a41",
+      "bodyTextPrefix": "LAB / CORRIDOR Find the light. First-person maze. WASD to move, ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/maze-page.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Victor Young — Product Builder",
+      "hasCanvas": true,
+      "bodyTextLen": 247,
+      "bodyTextHash": "f1fa2c2245257fd9dc5e2dbf46920374d923b63ee43db48f0fb5b56bb1493a41",
+      "bodyTextPrefix": "LAB / CORRIDOR Find the light. First-person maze. WASD to move, ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/maze-page-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/maze-page.json"
+}

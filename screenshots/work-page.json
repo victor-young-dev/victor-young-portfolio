@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/work",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Victor Young — Product Builder",
+      "hasCanvas": false,
+      "bodyTextLen": 952,
+      "bodyTextHash": "34c0323c24091823704975945ab14a2bc111f8c5ffa3a5efe928230b49b6e2ae",
+      "bodyTextPrefix": "Victor Young Home Work Ventures About Lab Contact Let’s talk WOR",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/work-page.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Victor Young — Product Builder",
+      "hasCanvas": false,
+      "bodyTextLen": 904,
+      "bodyTextHash": "048b13e9e531612be9bb6fb5e01d9593bfb693b667b653e5fca451bf8a401c0a",
+      "bodyTextPrefix": "Victor Young WORK Selected products. Software currently in motio",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/work-page-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/work-page.json"
+}
