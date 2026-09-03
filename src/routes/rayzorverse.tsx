@@ -67,7 +67,7 @@ function RayzorVersePage() {
             </h2>
             <p className="text-muted mt-4 max-w-2xl text-base leading-relaxed">
               Under RayzorVerse, different divisions focus on different problems — from software
-              products to writing and brand. The goal isn't to build everything at once; it's a
+              products to writing and brand. The goal isn’t to build everything at once; it’s a
               connected ecosystem where ideas can be developed, tested, launched, and grown.
             </p>
           </Reveal>
@@ -127,7 +127,7 @@ function RayzorVersePage() {
               Built with people, not just code.
             </h2>
             <p className="text-muted mt-4 max-w-2xl text-base leading-relaxed">
-              Some of the most valuable things I've worked on weren't entirely mine. I've
+              Some of the most valuable things I’ve worked on weren’t entirely mine. I’ve
               contributed development and design to projects led by other people — clearly credited
               as theirs.
             </p>

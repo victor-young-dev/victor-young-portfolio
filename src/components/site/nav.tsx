@@ -48,43 +48,50 @@ export function SiteNav() {
               <span className="font-medium">{SITE.name}</span>
             </Link>
 
-            <nav className="hidden items-center gap-6 lg:flex">
-              {NAV.filter((l) => l.to !== "/").map((l) => (
-                <Link
-                  key={l.to}
-                  to={l.to}
-                  className={cn(
-                    "text-sm transition-colors duration-150",
-                    pathname === l.to || pathname.startsWith(l.to) ? "text-fg" : "text-muted hover:text-fg",
-                  )}
-                >
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
+            <div className="flex items-center gap-6">
+              <nav className="hidden items-center gap-1 lg:flex">
+                {NAV.filter((l) => l.to !== "/" && l.to !== "/contact").map((l) => {
+                  const active = pathname === l.to || pathname.startsWith(l.to);
+                  return (
+                    <Link
+                      key={l.to}
+                      to={l.to}
+                      className={cn(
+                        "relative rounded-full px-3.5 py-1.5 text-sm transition-all duration-200",
+                        active
+                          ? "bg-accent/10 font-medium text-fg shadow-[0_0_16px_-6px_var(--vy-accent)]"
+                          : "text-muted hover:-translate-y-px hover:bg-fg/6 hover:text-fg",
+                      )}
+                    >
+                      {l.label}
+                    </Link>
+                  );
+                })}
+              </nav>
 
-            <div className="flex items-center gap-1">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full"
-                aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
-                onClick={toggle}
-              >
-                {theme === "dark" ? <Sun /> : <Moon />}
-              </Button>
-              <Button asChild size="sm" className="hidden rounded-full md:inline-flex">
-                <Link to="/contact">Let’s talk</Link>
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full lg:hidden"
-                aria-label={open ? "Close menu" : "Open menu"}
-                onClick={() => setOpen((v) => !v)}
-              >
-                {open ? <X /> : <Menu />}
-              </Button>
+              <div className="flex items-center gap-1">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full"
+                  aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+                  onClick={toggle}
+                >
+                  {theme === "dark" ? <Sun /> : <Moon />}
+                </Button>
+                <Button asChild size="sm" className="hidden rounded-full md:inline-flex">
+                  <Link to="/contact">Contact</Link>
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full lg:hidden"
+                  aria-label={open ? "Close menu" : "Open menu"}
+                  onClick={() => setOpen((v) => !v)}
+                >
+                  {open ? <X /> : <Menu />}
+                </Button>
+              </div>
             </div>
           </div>
         </header>
@@ -99,14 +106,8 @@ export function SiteNav() {
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-40 overflow-y-auto bg-bg pt-20 sm:pt-24 lg:hidden"
           >
-            <div className="flex items-center justify-between border-b border-border px-6 py-4 text-subtle font-mono text-2xs tracking-[0.18em] uppercase">
-              <span>Navigation</span>
-              <span>
-                00 — {String(NAV.length - 1).padStart(2, "0")}
-              </span>
-            </div>
             <nav className="flex flex-col gap-1 px-6 py-8 pb-12">
-              {NAV.map((l, i) => (
+              {NAV.filter((l) => l.to !== "/contact").map((l, i) => (
                 <motion.div
                   key={l.to}
                   initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
@@ -125,7 +126,7 @@ export function SiteNav() {
                 </motion.div>
               ))}
               <Button asChild size="lg" className="mt-8 w-full">
-                <Link to="/contact">Let’s talk</Link>
+                <Link to="/contact">Contact</Link>
               </Button>
             </nav>
           </motion.div>

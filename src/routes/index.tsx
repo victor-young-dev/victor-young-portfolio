@@ -18,16 +18,14 @@ function Home() {
               <p className="text-muted mb-5 font-mono text-2xs tracking-[0.22em] uppercase">
                 {SITE.roles}
               </p>
-              <div className="hero-name-row flex items-baseline justify-center gap-x-3 gap-y-1 lg:justify-start sm:gap-x-4">
-                <SplitWords
-                  as="h1"
-                  text="Victor Young"
-                  className="hero-name font-display text-display tracking-tight"
-                />
-                <p className="hero-legal-name text-muted font-display text-xl sm:text-3xl">
-                  \ {SITE.legal}
-                </p>
-              </div>
+              <SplitWords
+                as="h1"
+                text="Victor Young"
+                className="hero-name font-display text-display tracking-tight"
+              />
+              <p className="hero-legal-name font-display text-muted mt-1 italic sm:mt-2">
+                — {SITE.legal}
+              </p>
               <div className="hero-portrait-mobile mx-auto mt-6 w-full max-w-[11rem] sm:max-w-[17rem] lg:mx-0">
                 <div className="hero-image-frame overflow-hidden rounded-2xl bg-bg-elevated shadow-[var(--shadow-border)] backdrop-blur-sm">
                   <img src="/portrait.png" alt="Victor Young" className="aspect-[5/4] w-full object-cover" />
@@ -46,14 +44,14 @@ function Home() {
                   </Magnetic>
                   <Magnetic>
                     <Button asChild size="lg" variant="outline" className="hero-action">
-                      <Link to="/contact">Let's work together</Link>
+                      <Link to="/contact">Let’s work together</Link>
                     </Button>
                   </Magnetic>
                 </div>
               </div>
             </div>
 
-            <Reveal delay={0.15} className="hero-portrait-desktop mx-auto w-full max-w-[20rem] lg:mx-0 lg:ml-auto">
+            <Reveal delay={0.15} className="hero-portrait-desktop mx-auto w-full max-w-[20rem] lg:mx-0">
               <div className="hero-image-frame overflow-hidden rounded-2xl bg-bg-elevated shadow-[var(--shadow-border)] backdrop-blur-sm">
                 <img
                   src="/portrait.png"

@@ -86,8 +86,8 @@ export const CLIENT_WORK: WorkItem[] = [
     title: "BrandiLux",
     year: "2025",
     status: "Live",
-    arm: "BrandiLux",
-    summary: "Branding and digital experience — BrandiLux's own site, built as its flagship showcase.",
+    arm: "Brand & Creative",
+    summary: "Branding and digital experience — BrandiLux’s own site, built as its flagship showcase.",
     body: "BrandiLux is the creative and digital-services arm of RayzorVerse, and its own site is the clearest demonstration of the work: brand strategy, visual identity, and a premium digital experience built as one system rather than separate purchases. Delivered directly or with trusted collaborators, depending on scope.",
     image: "/work/brandilux.jpg",
     tags: ["Brand identity", "Web design", "Creative"],
@@ -132,7 +132,7 @@ export const CLIENT_WORK: WorkItem[] = [
     title: "GBCH",
     year: "2025",
     status: "Volunteer",
-    arm: "God’s Beautiful Child Hub",
+    arm: "Graphics & Content",
     summary: "Volunteer graphics and digital content for a startup’s visual communication.",
     body: "Volunteer creative support for God’s Beautiful Child Hub — graphics and digital content shaping the startup’s early visual communication.",
     tags: ["Graphics", "Volunteer"],
@@ -212,7 +212,7 @@ export const COLLABORATIONS = [
   {
     title: "KEN AI Detector",
     role: "Development collaboration",
-    copy: "Contributed development support to Kenneth's AI-detection tool. His product — I helped build it.",
+    copy: "Contributed development support to Kenneth’s AI-detection tool. His product — I helped build it.",
   },
   {
     title: "Automated Timetable System",
@@ -320,7 +320,7 @@ export const STORY = [
 ];
 
 export const PHILOSOPHY =
-  "I don't like seeing good ideas remain ideas. Sometimes the problem is design. Sometimes it's technology. Sometimes it's strategy, structure, communication, or simply finding the right people to make it happen. My work increasingly sits in that gap between an idea and its execution.";
+  "I don’t like seeing good ideas remain ideas. Sometimes the problem is design. Sometimes it’s technology. Sometimes it’s strategy, structure, communication, or simply finding the right people to make it happen. My work increasingly sits in that gap between an idea and its execution.";
 
 export const EDUCATION = {
   degree: "B.Sc. Computer Science",

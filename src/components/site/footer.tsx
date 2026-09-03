@@ -19,7 +19,7 @@ export function SiteFooter() {
               <p className="text-muted mt-1 max-w-[16rem] text-sm">{SITE.market}</p>
             </div>
           </div>
-          <nav className="grid grid-cols-2 gap-x-8 gap-y-2.5 text-sm sm:flex sm:flex-wrap sm:justify-end sm:gap-x-6 sm:gap-y-2">
+          <nav className="flex flex-wrap gap-x-6 gap-y-2.5 text-sm sm:justify-end">
             {NAV.map((l) => (
               <Link key={l.to} to={l.to} className="text-muted hover:text-fg transition-colors duration-150">
                 {l.label}
@@ -27,7 +27,7 @@ export function SiteFooter() {
             ))}
           </nav>
         </div>
-        <div className="text-subtle mt-10 flex flex-col gap-5 border-t border-border pt-6 text-sm sm:flex-row sm:items-center sm:justify-between">
+        <div className="text-subtle mt-10 flex flex-col-reverse items-center gap-5 border-t border-border pt-6 text-center text-sm sm:flex-row sm:justify-between sm:text-left">
           <p>
             © {new Date().getFullYear()} {SITE.name}
           </p>

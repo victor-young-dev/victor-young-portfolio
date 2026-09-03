@@ -44,7 +44,7 @@ function ContactPage() {
             <Reveal delay={0.08}>
               <p className="text-muted max-w-md text-base leading-relaxed">
                 Product roles, venture partnerships, and selected collaborations. If you’re building
-                something worth building and need a builder who can hold design, software, and the
+                something worth the effort and need a builder who can hold design, software, and the
                 brand — write.
               </p>
               <div className="mt-8 space-y-3 text-sm">
@@ -120,8 +120,8 @@ function ContactPage() {
                 <p className="text-subtle font-mono text-2xs tracking-[0.16em] uppercase">Show some love</p>
                 <h2 className="font-display mt-2 text-2xl tracking-tight">Support the work.</h2>
                 <p className="text-muted mt-3 text-sm leading-relaxed">
-                  A lot of what's here is built independently, through long nights and constant
-                  iteration. If something helped you or made you curious about what's next, say so.
+                  A lot of what’s here is built independently, through long nights and constant
+                  iteration. If something helped you or made you curious about what’s next, say so.
                 </p>
                 <Button asChild variant="outline" className="mt-5">
                   <a
@@ -138,7 +138,7 @@ function ContactPage() {
                 <h2 className="font-display mt-2 text-2xl tracking-tight">Interested in investing?</h2>
                 <p className="text-muted mt-3 text-sm leading-relaxed">
                   RayzorVerse is building a connected ecosystem across software, brand, and knowledge
-                  services. If you're exploring venture partnerships or early backing, let's talk
+                  services. If you’re exploring venture partnerships or early backing, let’s talk
                   specifics.
                 </p>
                 <Button asChild className="mt-5">
