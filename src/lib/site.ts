@@ -110,8 +110,16 @@ export const CLIENT_WORK: WorkItem[] = [
     arm: "IT / Digital & Creative",
     summary: "Six months inside an IT department, then ongoing virtual support — graphics, video, and digital workflows.",
     body: "A six-month SIWES placement in MTX Resources’ IT department that turned into ongoing virtual support: social media, content creation, graphics, short-form video, AI-assisted media, documentation, and data entry. Paid work, on-site and remote.",
+    image: "/work/mtx-hero.png",
     tags: ["Digital operations", "Content", "Graphics"],
-    gallery: [],
+    gallery: [
+      { kind: "image", src: "/work/mtx-safety-poster.png" },
+      { kind: "image", src: "/work/mtx-quote.png" },
+      { kind: "image", src: "/work/mtx-services.png" },
+      { kind: "image", src: "/work/mtx-partners.png" },
+      { kind: "image", src: "/work/mtx-footprint.png" },
+      { kind: "image", src: "/work/mtx-welcome-september.png" },
+    ],
   },
   {
     slug: "favour-link",
