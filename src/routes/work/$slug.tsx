@@ -1,26 +1,22 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import { ALL_WORK } from "@/lib/site";
+import { ArrowLeft, ArrowRight, ArrowUpRight, FileText } from "lucide-react";
+import { useSiteContent } from "@/lib/site-content-context";
 import { PageShell } from "@/components/site/page-shell";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/reveal";
 import { InitialTile } from "@/components/site/initial-tile";
 import { LiteYouTube } from "@/components/site/lite-youtube";
 
-export const Route = createFileRoute("/work/$slug")({
-  loader: ({ params }) => {
-    const item = ALL_WORK.find((w) => w.slug === params.slug);
-    if (!item) throw notFound();
-    return item;
-  },
-  component: WorkDetail,
-});
+export const Route = createFileRoute("/work/$slug")({ component: WorkDetail });
 
 function WorkDetail() {
-  const item = Route.useLoaderData();
-  const index = ALL_WORK.findIndex((w) => w.slug === item.slug);
+  const { slug } = Route.useParams();
+  const { allWork: ALL_WORK } = useSiteContent();
+  const index = ALL_WORK.findIndex((w) => w.slug === slug);
+  if (index === -1) throw notFound();
+  const item = ALL_WORK[index];
   const prev = index > 0 ? ALL_WORK[index - 1] : null;
-  const next = index >= 0 && index < ALL_WORK.length - 1 ? ALL_WORK[index + 1] : null;
+  const next = index < ALL_WORK.length - 1 ? ALL_WORK[index + 1] : null;
 
   return (
     <PageShell>
@@ -78,13 +74,24 @@ function WorkDetail() {
             <p className="text-subtle mt-16 font-mono text-2xs tracking-[0.16em] uppercase">Gallery</p>
             {item.gallery.length > 0 ? (
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                {item.gallery.map((g, i) => (
+                {item.gallery.map((g) => (
                   <div
-                    key={i}
+                    key={g.id}
                     className="overflow-hidden rounded-xl bg-bg-elevated shadow-[var(--shadow-border)]"
                   >
                     {g.kind === "video" ? (
                       <LiteYouTube youtubeId={g.youtubeId} title={g.title} />
+                    ) : g.kind === "document" ? (
+                      <a
+                        href={g.src}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group flex aspect-video w-full flex-col items-center justify-center gap-3 bg-bg-subtle p-6 text-center transition-colors hover:bg-bg-elevated"
+                      >
+                        <FileText className="text-subtle size-8 transition-colors group-hover:text-accent" strokeWidth={1.25} />
+                        <span className="text-sm font-medium">{g.title}</span>
+                        <span className="text-subtle text-xs">View document</span>
+                      </a>
                     ) : (
                       <img src={g.src} alt="" className="aspect-video w-full object-cover" />
                     )}

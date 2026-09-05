@@ -1,8 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { Github, Instagram, Linkedin, Mail, Twitter } from "lucide-react";
-import { NAV, SITE } from "@/lib/site";
+import { NAV } from "@/lib/site-content";
+import { useSiteContent } from "@/lib/site-content-context";
 
 export function SiteFooter() {
+  const { site: SITE } = useSiteContent();
   return (
     <footer className="relative z-10 border-t border-border">
       <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-12">
@@ -29,7 +31,10 @@ export function SiteFooter() {
         </div>
         <div className="text-subtle mt-10 flex flex-col-reverse items-center gap-5 border-t border-border pt-6 text-center text-sm sm:flex-row sm:justify-between sm:text-left">
           <p>
-            © {new Date().getFullYear()} {SITE.name}
+            © {new Date().getFullYear()} {SITE.name} ·{" "}
+            <Link to="/admin" className="hover:text-fg transition-colors">
+              Admin
+            </Link>
           </p>
           <div className="flex items-center gap-2" aria-label="Social links">
             <SocialLink href={SITE.x} label="X" icon={<Twitter />} />

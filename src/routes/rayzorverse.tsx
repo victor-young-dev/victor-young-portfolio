@@ -1,12 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
-import { COLLABORATIONS, ECOSYSTEM, LEADERSHIP, VENTURES } from "@/lib/site";
+import { useSiteContent } from "@/lib/site-content-context";
 import { PageShell } from "@/components/site/page-shell";
 import { Reveal } from "@/components/site/reveal";
 
 export const Route = createFileRoute("/rayzorverse")({ component: RayzorVersePage });
 
 function RayzorVersePage() {
+  const { ventures: VENTURES, ecosystem: ECOSYSTEM, collaborations: COLLABORATIONS } = useSiteContent();
   return (
     <PageShell>
       <main className="px-5 pt-28 pb-24 sm:px-8 sm:pt-36 sm:pb-32">
@@ -96,34 +97,6 @@ function RayzorVersePage() {
 
           <Reveal>
             <h2 className="font-display mt-28 text-3xl tracking-tight sm:text-4xl">
-              Leadership, outside the ecosystem.
-            </h2>
-            <p className="text-muted mt-4 max-w-2xl text-base leading-relaxed">
-              Not everything I build sits inside RayzorVerse. Some of it is a leadership role held
-              elsewhere — kept distinct here, on purpose.
-            </p>
-          </Reveal>
-          <div className="mt-10 flex flex-col gap-6">
-            {LEADERSHIP.map((l, i) => (
-              <Reveal key={l.slug} delay={i * 0.06}>
-                <article className="grid overflow-hidden rounded-2xl bg-bg-elevated shadow-[var(--shadow-border)] md:grid-cols-2">
-                  <div className="aspect-video overflow-hidden md:aspect-auto md:min-h-64">
-                    <img src={l.image} alt="" className="h-full w-full object-cover" />
-                  </div>
-                  <div className="flex flex-col justify-center p-6 sm:p-10">
-                    <p className="text-subtle font-mono text-2xs tracking-[0.16em] uppercase">
-                      {l.year} · {l.role}
-                    </p>
-                    <h2 className="font-display mt-3 text-3xl tracking-tight">{l.title}</h2>
-                    <p className="text-muted mt-4 text-sm leading-relaxed sm:text-base">{l.copy}</p>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal>
-            <h2 className="font-display mt-28 text-3xl tracking-tight sm:text-4xl">
               Built with people, not just code.
             </h2>
             <p className="text-muted mt-4 max-w-2xl text-base leading-relaxed">
@@ -134,7 +107,7 @@ function RayzorVersePage() {
           </Reveal>
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             {COLLABORATIONS.map((c, i) => (
-              <Reveal key={c.title} delay={i * 0.06}>
+              <Reveal key={c.id} delay={i * 0.06}>
                 <div className="rounded-xl bg-bg-elevated p-6 shadow-[var(--shadow-border)]">
                   <p className="text-subtle font-mono text-2xs tracking-[0.16em] uppercase">{c.role}</p>
                   <h3 className="font-display mt-2 text-2xl tracking-tight">{c.title}</h3>

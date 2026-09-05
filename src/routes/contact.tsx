@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
-import { SITE } from "@/lib/site";
+import { useSiteContent } from "@/lib/site-content-context";
 import { PageShell } from "@/components/site/page-shell";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/site/magnetic";
@@ -10,6 +10,7 @@ import { Reveal } from "@/components/site/reveal";
 export const Route = createFileRoute("/contact")({ component: ContactPage });
 
 function ContactPage() {
+  const { site: SITE } = useSiteContent();
   const [name, setName] = useState("");
   const [note, setNote] = useState("");
 

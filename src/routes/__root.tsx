@@ -3,6 +3,8 @@ import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import { ThemeProvider } from "@/lib/theme";
 import { Toaster } from "sonner";
+import { getSiteContent } from "@/lib/admin/content";
+import { SiteContentProvider } from "@/lib/site-content-context";
 import appCss from "../styles.css?url";
 
 const APP_NAME = "Victor Young";
@@ -10,6 +12,7 @@ const THEME_BOOT =
   "try{if(localStorage.getItem('vy-theme')==='light')document.documentElement.classList.add('light')}catch(e){}";
 
 export const Route = createRootRoute({
+  loader: () => getSiteContent(),
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -39,6 +42,7 @@ export const Route = createRootRoute({
 });
 
 function RootDocument() {
+  const content = Route.useLoaderData();
   return (
     <html lang="en" className="antialiased" suppressHydrationWarning>
       <head>
@@ -49,7 +53,9 @@ function RootDocument() {
         <PreviewHostBridge />
         <AuthProvider>
           <ThemeProvider>
-            <Outlet />
+            <SiteContentProvider value={content}>
+              <Outlet />
+            </SiteContentProvider>
           </ThemeProvider>
         </AuthProvider>
         <Toaster

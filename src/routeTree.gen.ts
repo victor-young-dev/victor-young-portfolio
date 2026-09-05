@@ -13,6 +13,18 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as RayzorverseRouteImport } from './routes/rayzorverse'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminAchievementsRouteImport } from './routes/admin/achievements'
+import { Route as AdminCapabilitiesRouteImport } from './routes/admin/capabilities'
+import { Route as AdminCollaborationsRouteImport } from './routes/admin/collaborations'
+import { Route as AdminExperienceRouteImport } from './routes/admin/experience'
+import { Route as AdminLeadershipRouteImport } from './routes/admin/leadership'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AdminServicesRouteImport } from './routes/admin/services'
+import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
+import { Route as AdminStoryRouteImport } from './routes/admin/story'
+import { Route as AdminVenturesRouteImport } from './routes/admin/ventures'
+import { Route as AdminWorkRouteImport } from './routes/admin/work'
 import { Route as WorkIndexRouteImport } from './routes/work/index'
 import { Route as WorkSlugRouteImport } from './routes/work/$slug'
 
@@ -36,6 +48,66 @@ const RayzorverseRoute = RayzorverseRouteImport.update({
   path: '/rayzorverse',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAchievementsRoute = AdminAchievementsRouteImport.update({
+  id: '/admin/achievements',
+  path: '/admin/achievements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminCapabilitiesRoute = AdminCapabilitiesRouteImport.update({
+  id: '/admin/capabilities',
+  path: '/admin/capabilities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminCollaborationsRoute = AdminCollaborationsRouteImport.update({
+  id: '/admin/collaborations',
+  path: '/admin/collaborations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminExperienceRoute = AdminExperienceRouteImport.update({
+  id: '/admin/experience',
+  path: '/admin/experience',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLeadershipRoute = AdminLeadershipRouteImport.update({
+  id: '/admin/leadership',
+  path: '/admin/leadership',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminServicesRoute = AdminServicesRouteImport.update({
+  id: '/admin/services',
+  path: '/admin/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/admin/settings',
+  path: '/admin/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminStoryRoute = AdminStoryRouteImport.update({
+  id: '/admin/story',
+  path: '/admin/story',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminVenturesRoute = AdminVenturesRouteImport.update({
+  id: '/admin/ventures',
+  path: '/admin/ventures',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminWorkRoute = AdminWorkRouteImport.update({
+  id: '/admin/work',
+  path: '/admin/work',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkIndexRoute = WorkIndexRouteImport.update({
   id: '/work/',
   path: '/work/',
@@ -52,7 +124,19 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/rayzorverse': typeof RayzorverseRoute
+  '/admin/achievements': typeof AdminAchievementsRoute
+  '/admin/capabilities': typeof AdminCapabilitiesRoute
+  '/admin/collaborations': typeof AdminCollaborationsRoute
+  '/admin/experience': typeof AdminExperienceRoute
+  '/admin/leadership': typeof AdminLeadershipRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/services': typeof AdminServicesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/story': typeof AdminStoryRoute
+  '/admin/ventures': typeof AdminVenturesRoute
+  '/admin/work': typeof AdminWorkRoute
   '/work/$slug': typeof WorkSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/work/': typeof WorkIndexRoute
 }
 export interface FileRoutesByTo {
@@ -60,7 +144,19 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/rayzorverse': typeof RayzorverseRoute
+  '/admin/achievements': typeof AdminAchievementsRoute
+  '/admin/capabilities': typeof AdminCapabilitiesRoute
+  '/admin/collaborations': typeof AdminCollaborationsRoute
+  '/admin/experience': typeof AdminExperienceRoute
+  '/admin/leadership': typeof AdminLeadershipRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/services': typeof AdminServicesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/story': typeof AdminStoryRoute
+  '/admin/ventures': typeof AdminVenturesRoute
+  '/admin/work': typeof AdminWorkRoute
   '/work/$slug': typeof WorkSlugRoute
+  '/admin': typeof AdminIndexRoute
   '/work': typeof WorkIndexRoute
 }
 export interface FileRoutesById {
@@ -69,22 +165,81 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/rayzorverse': typeof RayzorverseRoute
+  '/admin/achievements': typeof AdminAchievementsRoute
+  '/admin/capabilities': typeof AdminCapabilitiesRoute
+  '/admin/collaborations': typeof AdminCollaborationsRoute
+  '/admin/experience': typeof AdminExperienceRoute
+  '/admin/leadership': typeof AdminLeadershipRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/services': typeof AdminServicesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/story': typeof AdminStoryRoute
+  '/admin/ventures': typeof AdminVenturesRoute
+  '/admin/work': typeof AdminWorkRoute
   '/work/$slug': typeof WorkSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/work/': typeof WorkIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about' | '/contact' | '/rayzorverse' | '/work/$slug' | '/work/'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/rayzorverse'
+    | '/admin/achievements'
+    | '/admin/capabilities'
+    | '/admin/collaborations'
+    | '/admin/experience'
+    | '/admin/leadership'
+    | '/admin/login'
+    | '/admin/services'
+    | '/admin/settings'
+    | '/admin/story'
+    | '/admin/ventures'
+    | '/admin/work'
+    | '/work/$slug'
+    | '/admin/'
+    | '/work/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/rayzorverse' | '/work/$slug' | '/work'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/rayzorverse'
+    | '/admin/achievements'
+    | '/admin/capabilities'
+    | '/admin/collaborations'
+    | '/admin/experience'
+    | '/admin/leadership'
+    | '/admin/login'
+    | '/admin/services'
+    | '/admin/settings'
+    | '/admin/story'
+    | '/admin/ventures'
+    | '/admin/work'
+    | '/work/$slug'
+    | '/admin'
+    | '/work'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
     | '/rayzorverse'
+    | '/admin/achievements'
+    | '/admin/capabilities'
+    | '/admin/collaborations'
+    | '/admin/experience'
+    | '/admin/leadership'
+    | '/admin/login'
+    | '/admin/services'
+    | '/admin/settings'
+    | '/admin/story'
+    | '/admin/ventures'
+    | '/admin/work'
     | '/work/$slug'
+    | '/admin/'
     | '/work/'
   fileRoutesById: FileRoutesById
 }
@@ -93,7 +248,19 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   RayzorverseRoute: typeof RayzorverseRoute
+  AdminAchievementsRoute: typeof AdminAchievementsRoute
+  AdminCapabilitiesRoute: typeof AdminCapabilitiesRoute
+  AdminCollaborationsRoute: typeof AdminCollaborationsRoute
+  AdminExperienceRoute: typeof AdminExperienceRoute
+  AdminLeadershipRoute: typeof AdminLeadershipRoute
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminServicesRoute: typeof AdminServicesRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminStoryRoute: typeof AdminStoryRoute
+  AdminVenturesRoute: typeof AdminVenturesRoute
+  AdminWorkRoute: typeof AdminWorkRoute
   WorkSlugRoute: typeof WorkSlugRoute
+  AdminIndexRoute: typeof AdminIndexRoute
   WorkIndexRoute: typeof WorkIndexRoute
 }
 
@@ -127,6 +294,90 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RayzorverseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/achievements': {
+      id: '/admin/achievements'
+      path: '/admin/achievements'
+      fullPath: '/admin/achievements'
+      preLoaderRoute: typeof AdminAchievementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/capabilities': {
+      id: '/admin/capabilities'
+      path: '/admin/capabilities'
+      fullPath: '/admin/capabilities'
+      preLoaderRoute: typeof AdminCapabilitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/collaborations': {
+      id: '/admin/collaborations'
+      path: '/admin/collaborations'
+      fullPath: '/admin/collaborations'
+      preLoaderRoute: typeof AdminCollaborationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/experience': {
+      id: '/admin/experience'
+      path: '/admin/experience'
+      fullPath: '/admin/experience'
+      preLoaderRoute: typeof AdminExperienceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/leadership': {
+      id: '/admin/leadership'
+      path: '/admin/leadership'
+      fullPath: '/admin/leadership'
+      preLoaderRoute: typeof AdminLeadershipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/services': {
+      id: '/admin/services'
+      path: '/admin/services'
+      fullPath: '/admin/services'
+      preLoaderRoute: typeof AdminServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/admin/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/story': {
+      id: '/admin/story'
+      path: '/admin/story'
+      fullPath: '/admin/story'
+      preLoaderRoute: typeof AdminStoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/ventures': {
+      id: '/admin/ventures'
+      path: '/admin/ventures'
+      fullPath: '/admin/ventures'
+      preLoaderRoute: typeof AdminVenturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/work': {
+      id: '/admin/work'
+      path: '/admin/work'
+      fullPath: '/admin/work'
+      preLoaderRoute: typeof AdminWorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/work/': {
       id: '/work/'
       path: '/work'
@@ -149,7 +400,19 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   RayzorverseRoute: RayzorverseRoute,
+  AdminAchievementsRoute: AdminAchievementsRoute,
+  AdminCapabilitiesRoute: AdminCapabilitiesRoute,
+  AdminCollaborationsRoute: AdminCollaborationsRoute,
+  AdminExperienceRoute: AdminExperienceRoute,
+  AdminLeadershipRoute: AdminLeadershipRoute,
+  AdminLoginRoute: AdminLoginRoute,
+  AdminServicesRoute: AdminServicesRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminStoryRoute: AdminStoryRoute,
+  AdminVenturesRoute: AdminVenturesRoute,
+  AdminWorkRoute: AdminWorkRoute,
   WorkSlugRoute: WorkSlugRoute,
+  AdminIndexRoute: AdminIndexRoute,
   WorkIndexRoute: WorkIndexRoute,
 }
 export const routeTree = rootRouteImport

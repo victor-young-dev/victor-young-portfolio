@@ -1,6 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
-import { SITE, VENTURES, WORK } from "@/lib/site";
+import { useSiteContent } from "@/lib/site-content-context";
 import { PageShell } from "@/components/site/page-shell";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/site/magnetic";
@@ -9,6 +9,7 @@ import { Reveal, SplitWords } from "@/components/site/reveal";
 export const Route = createFileRoute("/")({ component: Home });
 
 function Home() {
+  const { site: SITE, work: WORK, ventures: VENTURES } = useSiteContent();
   return (
     <PageShell scene>
       <main>
@@ -119,7 +120,7 @@ function Home() {
                   >
                     <div className="aspect-video overflow-hidden">
                       <img
-                        src={item.image}
+                        src={item.image ?? undefined}
                         alt=""
                         className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                       />

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Play } from "lucide-react";
 
 /** Click-to-load YouTube embed — a thumbnail until clicked, so nothing loads Google's player up front. */
-export function LiteYouTube({ youtubeId, title }: { youtubeId: string; title?: string }) {
+export function LiteYouTube({ youtubeId, title }: { youtubeId: string; title?: string | null }) {
   const [playing, setPlaying] = useState(false);
 
   if (playing) {

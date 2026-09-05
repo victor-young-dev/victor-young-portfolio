@@ -1,13 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import {
-  ACHIEVEMENTS,
-  CAPABILITIES,
-  EDUCATION,
-  EXPERIENCE,
-  PHILOSOPHY,
-  SITE,
-  STORY,
-} from "@/lib/site";
+import { Award } from "lucide-react";
+import { useSiteContent } from "@/lib/site-content-context";
 import { PageShell } from "@/components/site/page-shell";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/reveal";
@@ -15,6 +8,16 @@ import { Reveal } from "@/components/site/reveal";
 export const Route = createFileRoute("/about")({ component: AboutPage });
 
 function AboutPage() {
+  const {
+    site: SITE,
+    story: STORY,
+    capabilities: CAPABILITIES,
+    experience: EXPERIENCE,
+    leadership: LEADERSHIP,
+    achievements: ACHIEVEMENTS,
+    education: EDUCATION,
+  } = useSiteContent();
+  const PHILOSOPHY = SITE.philosophy;
   return (
     <PageShell>
       <main className="px-5 pt-28 pb-24 sm:px-8 sm:pt-36 sm:pb-32">
@@ -130,26 +133,70 @@ function AboutPage() {
             ))}
           </ol>
 
-          <div className="mt-24 grid gap-10 lg:grid-cols-2">
-            <Reveal>
-              <h2 className="font-display text-3xl tracking-tight">Education</h2>
-              <p className="mt-4 font-medium">{EDUCATION.degree}</p>
-              <p className="text-muted mt-1 text-sm">{EDUCATION.school}</p>
-              <p className="text-subtle mt-1 font-mono text-2xs tracking-[0.12em] uppercase">
-                {EDUCATION.dates}
-              </p>
-              <p className="text-muted mt-3 text-sm">{EDUCATION.note}</p>
-              <p className="text-subtle mt-2 text-sm">{EDUCATION.secondary}</p>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <h2 className="font-display text-3xl tracking-tight">Notes</h2>
-              <ul className="text-muted mt-4 space-y-3 text-sm leading-relaxed">
-                {ACHIEVEMENTS.map((a) => (
-                  <li key={a}>{a}</li>
-                ))}
-              </ul>
-            </Reveal>
+          <Reveal>
+            <h2 className="font-display mt-24 text-3xl tracking-tight sm:text-4xl">
+              Leadership, outside RayzorVerse
+            </h2>
+            <p className="text-muted mt-4 max-w-2xl text-base leading-relaxed">
+              Not everything I do sits inside the ecosystem. Some of it is a leadership role held
+              elsewhere — kept distinct here, on purpose.
+            </p>
+          </Reveal>
+          <div className="mt-8 flex flex-col gap-6">
+            {LEADERSHIP.map((l, i) => (
+              <Reveal key={l.slug} delay={i * 0.06}>
+                <article className="grid overflow-hidden rounded-2xl bg-bg-elevated shadow-[var(--shadow-border)] md:grid-cols-2">
+                  <div className="aspect-video overflow-hidden md:aspect-auto md:min-h-64">
+                    <img src={l.image} alt="" className="h-full w-full object-cover" />
+                  </div>
+                  <div className="flex flex-col justify-center p-6 sm:p-10">
+                    <p className="text-subtle font-mono text-2xs tracking-[0.16em] uppercase">
+                      {l.year} · {l.role}
+                    </p>
+                    <h3 className="font-display mt-3 text-3xl tracking-tight">{l.title}</h3>
+                    <p className="text-muted mt-4 text-sm leading-relaxed sm:text-base">{l.copy}</p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
           </div>
+
+          <Reveal>
+            <h2 className="font-display mt-24 text-3xl tracking-tight sm:text-4xl">
+              Certifications & awards
+            </h2>
+          </Reveal>
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            {ACHIEVEMENTS.map((a, i) => (
+              <Reveal key={a.id} delay={i * 0.05}>
+                <div className="h-full overflow-hidden rounded-xl bg-bg-elevated shadow-[var(--shadow-border)]">
+                  <div className="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-bg-subtle to-bg-elevated">
+                    {a.image ? (
+                      <img src={a.image} alt="" className="h-full w-full object-cover" />
+                    ) : (
+                      <Award className="text-subtle size-10" strokeWidth={1.25} />
+                    )}
+                  </div>
+                  <div className="p-5">
+                    <p className="text-subtle font-mono text-2xs tracking-[0.14em] uppercase">{a.date}</p>
+                    <h3 className="mt-2 text-base font-medium">{a.title}</h3>
+                    <p className="text-muted mt-1 text-sm leading-relaxed">{a.issuer}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal>
+            <h2 className="font-display mt-24 text-3xl tracking-tight">Education</h2>
+            <p className="mt-4 font-medium">{EDUCATION.degree}</p>
+            <p className="text-muted mt-1 text-sm">{EDUCATION.school}</p>
+            <p className="text-subtle mt-1 font-mono text-2xs tracking-[0.12em] uppercase">
+              {EDUCATION.dates}
+            </p>
+            <p className="text-muted mt-3 text-sm">{EDUCATION.note}</p>
+            <p className="text-subtle mt-2 text-sm">{EDUCATION.secondary}</p>
+          </Reveal>
         </div>
       </main>
     </PageShell>

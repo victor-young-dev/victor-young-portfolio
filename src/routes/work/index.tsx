@@ -1,6 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
-import { CLIENT_WORK, SERVICES, WORK } from "@/lib/site";
+import { useSiteContent } from "@/lib/site-content-context";
 import { PageShell } from "@/components/site/page-shell";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/reveal";
@@ -9,6 +9,7 @@ import { InitialTile } from "@/components/site/initial-tile";
 export const Route = createFileRoute("/work/")({ component: WorkPage });
 
 function WorkPage() {
+  const { work: WORK, clientWork: CLIENT_WORK, services: SERVICES } = useSiteContent();
   return (
     <PageShell>
       <main className="px-5 pt-28 pb-24 sm:px-8 sm:pt-36 sm:pb-32">
@@ -38,7 +39,7 @@ function WorkPage() {
                 >
                   <div className="aspect-video overflow-hidden md:aspect-auto md:min-h-72">
                     <img
-                      src={item.image}
+                      src={item.image ?? undefined}
                       alt=""
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
@@ -111,7 +112,7 @@ function WorkPage() {
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {SERVICES.map((s, i) => (
-              <Reveal key={s.title} delay={i * 0.05}>
+              <Reveal key={s.id} delay={i * 0.05}>
                 <div className="h-full rounded-xl bg-bg-elevated p-5 shadow-[var(--shadow-border)]">
                   <h3 className="text-sm font-medium">{s.title}</h3>
                   <p className="text-muted mt-2 text-sm leading-relaxed">{s.copy}</p>
