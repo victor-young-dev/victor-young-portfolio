@@ -1,11 +1,13 @@
+import { useEffect, useState } from "react";
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, ArrowUpRight, FileText } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, FileText, X } from "lucide-react";
 import { useSiteContent } from "@/lib/site-content-context";
 import { PageShell } from "@/components/site/page-shell";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/reveal";
 import { InitialTile } from "@/components/site/initial-tile";
 import { LiteYouTube } from "@/components/site/lite-youtube";
+import type { GalleryItem } from "@/lib/site-content";
 
 export const Route = createFileRoute("/work/$slug")({ component: WorkDetail });
 
@@ -15,8 +17,29 @@ function WorkDetail() {
   const index = ALL_WORK.findIndex((w) => w.slug === slug);
   if (index === -1) throw notFound();
   const item = ALL_WORK[index];
+  const imageItems = item.gallery.filter((galleryItem) => galleryItem.kind === "image");
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const prev = index > 0 ? ALL_WORK[index - 1] : null;
   const next = index < ALL_WORK.length - 1 ? ALL_WORK[index + 1] : null;
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setLightboxIndex(null);
+      if (event.key === "ArrowLeft") {
+        setLightboxIndex((current) => (current === null ? null : (current - 1 + imageItems.length) % imageItems.length));
+      }
+      if (event.key === "ArrowRight") {
+        setLightboxIndex((current) => (current === null ? null : (current + 1) % imageItems.length));
+      }
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [imageItems.length, lightboxIndex]);
 
   return (
     <PageShell>
@@ -93,7 +116,18 @@ function WorkDetail() {
                         <span className="text-subtle text-xs">View document</span>
                       </a>
                     ) : (
-                      <img src={g.src} alt={g.title ?? ""} className="aspect-video w-full object-cover" />
+                      <button
+                        type="button"
+                        onClick={() => setLightboxIndex(imageItems.findIndex((image) => image.id === g.id))}
+                        className="group block w-full cursor-zoom-in text-left"
+                        aria-label={`Open ${g.title ?? "gallery image"} in full view`}
+                      >
+                        <img
+                          src={g.src}
+                          alt={g.title ?? ""}
+                          className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
+                      </button>
                     )}
                     {g.kind === "image" && g.title ? (
                       <figcaption className="border-t border-border px-4 py-3 text-xs text-muted">
@@ -134,6 +168,80 @@ function WorkDetail() {
           </div>
         </div>
       </main>
+      {lightboxIndex !== null && imageItems[lightboxIndex] ? (
+        <ImageLightbox
+          item={imageItems[lightboxIndex]}
+          index={lightboxIndex}
+          total={imageItems.length}
+          onClose={() => setLightboxIndex(null)}
+          onPrevious={() => setLightboxIndex((current) => (current === null ? null : (current - 1 + imageItems.length) % imageItems.length))}
+          onNext={() => setLightboxIndex((current) => (current === null ? null : (current + 1) % imageItems.length))}
+        />
+      ) : null}
     </PageShell>
+  );
+}
+
+function ImageLightbox({
+  item,
+  index,
+  total,
+  onClose,
+  onPrevious,
+  onNext,
+}: {
+  item: Extract<GalleryItem, { kind: "image" }>;
+  index: number;
+  total: number;
+  onClose: () => void;
+  onPrevious: () => void;
+  onNext: () => void;
+}) {
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={item.title ?? "Gallery image"}
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 backdrop-blur-md sm:p-8"
+      onClick={onClose}
+    >
+      <div className="relative flex h-full w-full max-w-6xl items-center justify-center" onClick={(event) => event.stopPropagation()}>
+        <img src={item.src} alt={item.title ?? ""} className="max-h-[82vh] max-w-full object-contain" />
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close full image"
+          className="absolute right-0 top-0 grid size-11 place-items-center rounded-full border border-white/20 bg-black/35 text-white transition-colors hover:bg-white/15"
+        >
+          <X className="size-5" />
+        </button>
+        {total > 1 ? (
+          <>
+            <button
+              type="button"
+              onClick={onPrevious}
+              aria-label="Previous image"
+              className="absolute left-0 grid size-11 place-items-center rounded-full border border-white/20 bg-black/35 text-white transition-colors hover:bg-white/15"
+            >
+              <ChevronLeft className="size-6" />
+            </button>
+            <button
+              type="button"
+              onClick={onNext}
+              aria-label="Next image"
+              className="absolute right-0 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-black/35 text-white transition-colors hover:bg-white/15"
+            >
+              <ChevronRight className="size-6" />
+            </button>
+          </>
+        ) : null}
+        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-gradient-to-t from-black/80 to-transparent px-2 pb-2 pt-12 text-white sm:px-4 sm:pb-4">
+          <p className="text-sm font-medium">{item.title ?? "Gallery image"}</p>
+          <p className="shrink-0 font-mono text-2xs tracking-[0.16em] text-white/65">
+            {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }

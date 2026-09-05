@@ -38,11 +38,15 @@ function WorkPage() {
                   className="group grid overflow-hidden rounded-2xl bg-bg-elevated shadow-[var(--shadow-border)] transition-[box-shadow] duration-200 hover:shadow-[var(--shadow-border-hover)] md:grid-cols-2"
                 >
                   <div className="aspect-video overflow-hidden md:aspect-auto md:min-h-72">
-                    <img
-                      src={item.image ?? undefined}
-                      alt=""
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+                    {item.image ? (
+                      <img
+                        src={item.image}
+                        alt=""
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    ) : (
+                      <InitialTile title={item.title} className="h-full w-full" />
+                    )}
                   </div>
                   <div className="flex flex-col justify-between gap-6 p-6 sm:p-8">
                     <div>
