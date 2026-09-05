@@ -48,7 +48,7 @@ function toGalleryItem(row: GalleryRow): GalleryItem {
   if (row.kind === "document") {
     return { id: row.id, kind: "document", src: row.src ?? "", title: row.title ?? "" };
   }
-  return { id: row.id, kind: "image", src: row.src ?? "" };
+  return { id: row.id, kind: "image", src: row.src ?? "", title: row.title };
 }
 
 /** Everything the public site reads, in one round trip. Server-only — call via the RPC below. */

@@ -98,7 +98,7 @@ export function GalleryEditor({
           kind: "image",
           src: result.url,
           youtube_id: null,
-          title: null,
+          title: title || null,
           sort_order: items.length,
         },
       });

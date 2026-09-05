@@ -21,7 +21,7 @@ export type SiteSettings = {
 };
 
 export type GalleryItem =
-  | { id: number; kind: "image"; src: string }
+  | { id: number; kind: "image"; src: string; title?: string | null }
   | { id: number; kind: "video"; youtubeId: string; title?: string | null }
   | { id: number; kind: "document"; src: string; title: string };
 

@@ -75,7 +75,7 @@ function WorkDetail() {
             {item.gallery.length > 0 ? (
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 {item.gallery.map((g) => (
-                  <div
+                  <figure
                     key={g.id}
                     className="overflow-hidden rounded-xl bg-bg-elevated shadow-[var(--shadow-border)]"
                   >
@@ -93,9 +93,14 @@ function WorkDetail() {
                         <span className="text-subtle text-xs">View document</span>
                       </a>
                     ) : (
-                      <img src={g.src} alt="" className="aspect-video w-full object-cover" />
+                      <img src={g.src} alt={g.title ?? ""} className="aspect-video w-full object-cover" />
                     )}
-                  </div>
+                    {g.kind === "image" && g.title ? (
+                      <figcaption className="border-t border-border px-4 py-3 text-xs text-muted">
+                        {g.title}
+                      </figcaption>
+                    ) : null}
+                  </figure>
                 ))}
               </div>
             ) : (
