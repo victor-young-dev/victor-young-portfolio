@@ -111,6 +111,8 @@ async function createPgliteSql(): Promise<Sql> {
   // data survives source edits (it resets on dev-server restart).
   globalRef.__pgliteInstance__ ??= (async () => {
     const { PGlite } = await import("@electric-sql/pglite");
+    // Keep the no-DATABASE_URL public fallback entirely in memory so serverless
+    // deployments never try to open a missing bundled filesystem data file.
     const pg = new PGlite("memory://", {
       parsers: {
         [OID_INT8]: Number,
