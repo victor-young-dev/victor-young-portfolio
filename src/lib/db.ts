@@ -187,21 +187,15 @@ async function createSql(): Promise<Sql> {
     );
   }
   if (dbSource === "pglite" && isHostedDeploy()) {
-    // PGLite boots by reading a ~6MB pglite.data init bundle (plus wasm) off
-    // disk next to its own module, via a runtime string path the bundler
-    // can't trace as an asset — it never ships in the deployed function, so
-    // every request would crash with a confusing ENOENT. `memory://` mode
-    // avoids touching a *user data* file, but PGLite still needs this init
-    // bundle just to boot at all, so it doesn't help here. And even fixed,
-    // an in-memory DB forgets every admin edit on the next cold start — no
-    // real persistence. Fail loudly and actionably instead.
-    throw new Error(
-      "DATABASE_URL is not set on this deployment. This app's embedded PGLite " +
-        "fallback cannot run in a hosted serverless function (its init bundle " +
-        "isn't shipped in the deploy, and it has no persistence across cold " +
-        "starts anyway). Connect a real Postgres database — Neon's free tier " +
-        "(neon.tech, no card required) works well — and set DATABASE_URL in " +
-        "this project's environment variables, then redeploy.",
+    // PGLite works here (scripts/copy-pglite-assets.mjs ships its init bundle
+    // into the deployed function), but it's still in-memory: every cold
+    // start forgets admin edits. Fine as a free "just let people see it"
+    // fallback — log so it's visible in deploy logs, not silent.
+    console.warn(
+      "[db] No DATABASE_URL set — running on the in-memory PGLite fallback. " +
+        "Content resets on every cold start. Connect a real Postgres " +
+        "database (e.g. Neon's free tier, neon.tech) and set DATABASE_URL " +
+        "once you need admin edits to persist.",
     );
   }
   return dbSource === "neon" ? createNeonSql() : createPgliteSql();
