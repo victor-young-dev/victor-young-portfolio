@@ -171,11 +171,37 @@ async function createPgliteSql(): Promise<Sql> {
 
 let sqlPromise: Promise<Sql> | null = null;
 
+/**
+ * True on a real hosted deployment (Vercel/Netlify build & runtime both set
+ * these), false in local dev and this tool's own live-preview sandbox.
+ */
+function isHostedDeploy(): boolean {
+  return Boolean(process.env.VERCEL || process.env.NETLIFY);
+}
+
 async function createSql(): Promise<Sql> {
   if (typeof window !== "undefined") {
     throw new Error(
       "@/lib/db is server-only — call getSql() from a createServerFn handler " +
         "or a server route loader, never from client code.",
+    );
+  }
+  if (dbSource === "pglite" && isHostedDeploy()) {
+    // PGLite boots by reading a ~6MB pglite.data init bundle (plus wasm) off
+    // disk next to its own module, via a runtime string path the bundler
+    // can't trace as an asset — it never ships in the deployed function, so
+    // every request would crash with a confusing ENOENT. `memory://` mode
+    // avoids touching a *user data* file, but PGLite still needs this init
+    // bundle just to boot at all, so it doesn't help here. And even fixed,
+    // an in-memory DB forgets every admin edit on the next cold start — no
+    // real persistence. Fail loudly and actionably instead.
+    throw new Error(
+      "DATABASE_URL is not set on this deployment. This app's embedded PGLite " +
+        "fallback cannot run in a hosted serverless function (its init bundle " +
+        "isn't shipped in the deploy, and it has no persistence across cold " +
+        "starts anyway). Connect a real Postgres database — Neon's free tier " +
+        "(neon.tech, no card required) works well — and set DATABASE_URL in " +
+        "this project's environment variables, then redeploy.",
     );
   }
   return dbSource === "neon" ? createNeonSql() : createPgliteSql();
