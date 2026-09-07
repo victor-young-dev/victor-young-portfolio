@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, ChevronLeft, ChevronRight, FileText, X } from "lucide-react";
 import { useSiteContent } from "@/lib/site-content-context";
@@ -221,12 +222,18 @@ function ImageLightbox({
   onPrevious: () => void;
   onNext: () => void;
 }) {
-  return (
+  // Portalled straight to <body> — PageShell wraps page content in a
+  // `relative z-10` div, which creates its own stacking context. Nested
+  // inside that, no z-index on this dialog (however high) can ever paint
+  // above the site nav's fixed header, which lives outside that wrapper.
+  // The nav visibly sat on top of the image and swallowed clicks meant for
+  // the close button until this escaped via a portal.
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
       aria-label={item.title ?? "Gallery image"}
-      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 backdrop-blur-md sm:p-8"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-md sm:p-8"
       onClick={onClose}
     >
       <div className="relative flex h-full w-full max-w-6xl items-center justify-center" onClick={(event) => event.stopPropagation()}>
@@ -266,6 +273,7 @@ function ImageLightbox({
           </p>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
