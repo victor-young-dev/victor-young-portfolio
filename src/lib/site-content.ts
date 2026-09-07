@@ -117,6 +117,22 @@ export type Achievement = {
   image?: string | null;
 };
 
+export type WrittenWorkDetail = { label: string; value: string };
+
+export type WrittenWork = {
+  id: number;
+  slug: string;
+  title: string;
+  category: string;
+  year: string;
+  coverColor: string;
+  coverAccent: string;
+  overview: string;
+  details: WrittenWorkDetail[];
+  link?: string | null;
+  linkLabel: string;
+};
+
 export type SiteContent = {
   site: SiteSettings;
   work: WorkItem[];
@@ -132,6 +148,7 @@ export type SiteContent = {
   story: StoryStep[];
   education: Education;
   achievements: Achievement[];
+  writtenWorks: WrittenWork[];
 };
 
 /**

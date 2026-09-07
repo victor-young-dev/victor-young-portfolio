@@ -15,6 +15,8 @@ import type {
   StoryStep,
   VentureItem,
   WorkItem,
+  WrittenWork,
+  WrittenWorkDetail,
 } from "@/lib/site-content";
 
 /** jsonb round-trips as a parsed array on both Neon and PGLite — this just guards the edge cases. */
@@ -41,6 +43,19 @@ type GalleryRow = {
   sort_order: number;
 };
 
+function asDetails(value: unknown): WrittenWorkDetail[] {
+  if (Array.isArray(value)) return value as WrittenWorkDetail[];
+  if (typeof value === "string") {
+    try {
+      const parsed = JSON.parse(value);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+  return [];
+}
+
 function toGalleryItem(row: GalleryRow): GalleryItem {
   if (row.kind === "video") {
     return { id: row.id, kind: "video", youtubeId: row.youtube_id ?? "", title: row.title };
@@ -55,7 +70,7 @@ function toGalleryItem(row: GalleryRow): GalleryItem {
 async function loadSiteContent(): Promise<SiteContent> {
   const sql = await getSql();
 
-  const [siteRows, workRows, galleryRows, ventureRows, leadershipRows, collabRows, expRows, capRows, serviceRows, storyRows, eduRows, achRows] =
+  const [siteRows, workRows, galleryRows, ventureRows, leadershipRows, collabRows, expRows, capRows, serviceRows, storyRows, eduRows, achRows, writtenWorkRows] =
     await Promise.all([
       sql`select * from site_settings where id = 1`,
       sql`select * from work_items order by kind, sort_order, id`,
@@ -69,6 +84,7 @@ async function loadSiteContent(): Promise<SiteContent> {
       sql`select * from story_steps order by sort_order, id`,
       sql`select * from education where id = 1`,
       sql`select * from achievements order by sort_order, id`,
+      sql`select * from written_works order by sort_order, id`,
     ]);
 
   const siteRow = siteRows[0] as Record<string, unknown> | undefined;
@@ -198,6 +214,20 @@ async function loadSiteContent(): Promise<SiteContent> {
     image: (r.image as string | null) ?? null,
   }));
 
+  const writtenWorks: WrittenWork[] = (writtenWorkRows as Record<string, unknown>[]).map((r) => ({
+    id: r.id as number,
+    slug: r.slug as string,
+    title: r.title as string,
+    category: r.category as string,
+    year: r.year as string,
+    coverColor: r.cover_color as string,
+    coverAccent: r.cover_accent as string,
+    overview: r.overview as string,
+    details: asDetails(r.details),
+    link: (r.link as string | null) ?? null,
+    linkLabel: r.link_label as string,
+  }));
+
   return {
     site,
     work,
@@ -213,6 +243,7 @@ async function loadSiteContent(): Promise<SiteContent> {
     story,
     education,
     achievements,
+    writtenWorks,
   };
 }
 

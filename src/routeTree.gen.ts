@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as LibraryRouteImport } from './routes/library'
 import { Route as RayzorverseRouteImport } from './routes/rayzorverse'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminAchievementsRouteImport } from './routes/admin/achievements'
@@ -41,6 +42,11 @@ const AboutRoute = AboutRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LibraryRoute = LibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RayzorverseRoute = RayzorverseRouteImport.update({
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/library': typeof LibraryRoute
   '/rayzorverse': typeof RayzorverseRoute
   '/admin/achievements': typeof AdminAchievementsRoute
   '/admin/capabilities': typeof AdminCapabilitiesRoute
@@ -143,6 +150,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/library': typeof LibraryRoute
   '/rayzorverse': typeof RayzorverseRoute
   '/admin/achievements': typeof AdminAchievementsRoute
   '/admin/capabilities': typeof AdminCapabilitiesRoute
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/library': typeof LibraryRoute
   '/rayzorverse': typeof RayzorverseRoute
   '/admin/achievements': typeof AdminAchievementsRoute
   '/admin/capabilities': typeof AdminCapabilitiesRoute
@@ -186,6 +195,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/library'
     | '/rayzorverse'
     | '/admin/achievements'
     | '/admin/capabilities'
@@ -206,6 +216,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/library'
     | '/rayzorverse'
     | '/admin/achievements'
     | '/admin/capabilities'
@@ -226,6 +237,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/library'
     | '/rayzorverse'
     | '/admin/achievements'
     | '/admin/capabilities'
@@ -247,6 +259,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  LibraryRoute: typeof LibraryRoute
   RayzorverseRoute: typeof RayzorverseRoute
   AdminAchievementsRoute: typeof AdminAchievementsRoute
   AdminCapabilitiesRoute: typeof AdminCapabilitiesRoute
@@ -285,6 +298,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/library': {
+      id: '/library'
+      path: '/library'
+      fullPath: '/library'
+      preLoaderRoute: typeof LibraryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/rayzorverse': {
@@ -399,6 +419,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  LibraryRoute: LibraryRoute,
   RayzorverseRoute: RayzorverseRoute,
   AdminAchievementsRoute: AdminAchievementsRoute,
   AdminCapabilitiesRoute: AdminCapabilitiesRoute,

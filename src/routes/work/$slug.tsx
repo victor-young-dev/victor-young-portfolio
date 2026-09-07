@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, FileText, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, ChevronLeft, ChevronRight, FileText, X } from "lucide-react";
 import { useSiteContent } from "@/lib/site-content-context";
 import { PageShell } from "@/components/site/page-shell";
 import { Button } from "@/components/ui/button";
@@ -57,14 +57,24 @@ function WorkDetail() {
             </p>
             <h1 className="font-display mt-4 text-5xl tracking-tight sm:text-7xl">{item.title}</h1>
             <p className="text-muted mt-5 max-w-2xl text-lg leading-relaxed">{item.summary}</p>
-            {item.href ? (
-              <Button asChild variant="outline" className="mt-6">
-                <a href={item.href} target="_blank" rel="noreferrer">
-                  Visit live site
-                  <ArrowUpRight />
-                </a>
-              </Button>
-            ) : null}
+            <div className="mt-6 flex flex-wrap gap-3">
+              {item.href ? (
+                <Button asChild variant="outline">
+                  <a href={item.href} target="_blank" rel="noreferrer">
+                    Visit live site
+                    <ArrowUpRight />
+                  </a>
+                </Button>
+              ) : null}
+              {item.slug === "apex-wright-lab" ? (
+                <Button asChild variant="outline">
+                  <Link to="/library">
+                    <BookOpen />
+                    Browse the library
+                  </Link>
+                </Button>
+              ) : null}
+            </div>
           </Reveal>
 
           <Reveal delay={0.08}>
