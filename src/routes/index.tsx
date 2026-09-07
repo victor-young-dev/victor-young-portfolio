@@ -14,7 +14,7 @@ function Home() {
     <PageShell scene>
       <main>
         <section className="relative flex min-h-0 items-center px-5 pt-28 pb-16 sm:min-h-svh sm:px-8 sm:pt-32 lg:pb-20">
-          <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10">
+          <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-10">
             <div className="text-center lg:text-left">
               <p className="text-muted mb-5 font-mono text-2xs tracking-[0.22em] uppercase">
                 {SITE.roles}
@@ -27,7 +27,7 @@ function Home() {
               <p className="hero-legal-name font-display text-muted mt-1 italic sm:mt-2">
                 — {SITE.legal}
               </p>
-              <div className="hero-portrait-mobile mx-auto mt-6 w-full max-w-[11rem] sm:max-w-[17rem] lg:mx-0">
+              <div className="hero-portrait-mobile mx-auto mt-6 w-full max-w-[14rem] sm:max-w-[21rem] lg:mx-0">
                 <div className="hero-image-frame overflow-hidden rounded-2xl bg-bg-elevated shadow-[var(--shadow-border)] backdrop-blur-sm">
                   <img src="/portrait.png" alt="Victor Young" className="aspect-[5/4] w-full object-cover" />
                 </div>
@@ -52,7 +52,7 @@ function Home() {
               </div>
             </div>
 
-            <Reveal delay={0.15} className="hero-portrait-desktop mx-auto w-full max-w-[20rem] lg:mx-0">
+            <Reveal delay={0.15} className="hero-portrait-desktop mx-auto w-full max-w-[28rem] lg:mx-0">
               <div className="hero-image-frame overflow-hidden rounded-2xl bg-bg-elevated shadow-[var(--shadow-border)] backdrop-blur-sm">
                 <img
                   src="/portrait.png"

@@ -3,6 +3,7 @@ import { ClientOnly } from "@/components/site/client-only";
 import { CustomCursor } from "@/components/site/cursor";
 import { SiteNav } from "@/components/site/nav";
 import { SiteFooter } from "@/components/site/footer";
+import { ContactFab } from "@/components/site/contact-fab";
 
 const HeroCanvas = lazy(() => import("@/components/site/hero-canvas"));
 
@@ -27,6 +28,7 @@ export function PageShell({
       <SiteNav />
       <div className="relative z-10">{children}</div>
       <SiteFooter />
+      <ContactFab />
     </div>
   );
 }
