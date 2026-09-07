@@ -101,10 +101,10 @@ function Home() {
           <div className="mx-auto max-w-6xl">
             <Reveal>
               <div className="mb-10 flex items-end justify-between gap-4">
-                <h2 className="font-display text-4xl tracking-tight sm:text-5xl">Selected work</h2>
+                <h2 className="font-display text-4xl tracking-tight sm:text-5xl">Selected Work</h2>
                 <Button asChild variant="ghost" size="sm">
                   <Link to="/work">
-                    All work
+                    All Work
                     <ArrowUpRight />
                   </Link>
                 </Button>

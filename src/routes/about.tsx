@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { Award } from "lucide-react";
+import { Award, Download } from "lucide-react";
 import { useSiteContent } from "@/lib/site-content-context";
 import { PageShell } from "@/components/site/page-shell";
 import { Button } from "@/components/ui/button";
@@ -62,6 +62,14 @@ function AboutPage() {
                   <Button asChild size="lg" variant="outline">
                     <Link to="/work">View my work</Link>
                   </Button>
+                  {/* The CV belongs with the other two calls to action, not
+                      four sections down beside the Experience heading. */}
+                  <Button asChild size="lg" variant="outline">
+                    <a href={SITE.cv} download target="_blank" rel="noreferrer">
+                      <Download />
+                      Download CV
+                    </a>
+                  </Button>
                 </div>
               </Reveal>
             </div>
@@ -111,8 +119,9 @@ function AboutPage() {
           <Reveal>
             <div className="mt-24 flex flex-wrap items-end justify-between gap-4">
               <h2 className="font-display text-3xl tracking-tight sm:text-4xl">Experience</h2>
-              <Button asChild variant="ghost" size="sm">
-                <a href={SITE.cv} target="_blank" rel="noreferrer">
+              <Button asChild variant="outline" size="sm">
+                <a href={SITE.cv} download target="_blank" rel="noreferrer">
+                  <Download />
                   Download CV
                 </a>
               </Button>
