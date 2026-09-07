@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, createFileRoute, notFound } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, ArrowUpRight, BookOpen, ChevronLeft, ChevronRight, FileText, X } from "lucide-react";
 import { useSiteContent } from "@/lib/site-content-context";
 import { PageShell } from "@/components/site/page-shell";
@@ -10,19 +10,26 @@ import { LiteYouTube } from "@/components/site/lite-youtube";
 import type { GalleryItem } from "@/lib/site-content";
 import { AppNotFoundComponent } from "@/lib/error-component";
 
-// notFound() below is thrown during render rather than from a loader, which the
-// router's defaultNotFoundComponent does not cover — so the 404 page is wired
-// to this route explicitly. Without it a stale /work/<slug> link renders blank.
-export const Route = createFileRoute("/work/$slug")({
-  component: WorkDetail,
-  notFoundComponent: AppNotFoundComponent,
-});
+export const Route = createFileRoute("/work/$slug")({ component: WorkDetailRoute });
 
-function WorkDetail() {
+/**
+ * Guard for an unknown slug. This used to `throw notFound()` from inside the
+ * render, which neither the route's own notFoundComponent nor the router's
+ * default one catches — so a stale or renamed /work/<slug> link rendered a
+ * blank page with no nav and no way back. Rendering the 404 directly fixes
+ * that, and keeping the lookup in a wrapper means WorkDetail below always has
+ * a real item and can call its hooks unconditionally.
+ */
+function WorkDetailRoute() {
   const { slug } = Route.useParams();
   const { allWork: ALL_WORK } = useSiteContent();
   const index = ALL_WORK.findIndex((w) => w.slug === slug);
-  if (index === -1) throw notFound();
+  if (index === -1) return <AppNotFoundComponent />;
+  return <WorkDetail index={index} />;
+}
+
+function WorkDetail({ index }: { index: number }) {
+  const { allWork: ALL_WORK } = useSiteContent();
   const item = ALL_WORK[index];
   const imageItems = item.gallery.filter((galleryItem) => galleryItem.kind === "image");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
