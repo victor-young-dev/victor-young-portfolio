@@ -50,35 +50,44 @@ type ShelfItem = { id: string; title: string; note: string; image: string };
 const unsplash = (id: string) => `https://images.unsplash.com/${id}?w=1200&q=80&auto=format&fit=crop`;
 
 /**
- * The Figma and graphic-design shelves are placeholders. Covers are free
- * Unsplash stock standing in for the real artwork, and each caption describes a
- * kind of piece rather than a specific one — swap both for the gallery exports
- * when they land.
+ * The Figma, graphic-design, and video shelves are placeholders. Covers are
+ * free Unsplash stock standing in for the real artwork, and each caption
+ * describes a kind of piece rather than a specific one — swap for the real
+ * exports when they land.
  */
 const FIGMA_PROJECTS: ShelfItem[] = [
   {
-    id: "figma-product-ui",
-    title: "Product UI Kits",
-    note: "Component libraries and design systems built to hand off to code without a redraw.",
-    image: unsplash("photo-1611224923853-80b023f02d71"),
-  },
-  {
-    id: "figma-mobile-flows",
-    title: "Mobile App Flows",
-    note: "End-to-end screen flows and clickable prototypes for commerce and utility apps.",
-    image: unsplash("photo-1626785774573-4b799315345d"),
-  },
-  {
     id: "figma-wireframes",
-    title: "Wireframes & Prototypes",
+    title: "Wireframes",
     note: "Low-fidelity structure used to settle the shape of a product before anyone builds it.",
     image: unsplash("photo-1561070791-2526d30994b5"),
   },
   {
-    id: "figma-web-layouts",
-    title: "Web Layouts",
-    note: "Responsive marketing and dashboard layouts designed screen-first, not scaled down.",
-    image: unsplash("photo-1618004912476-29818d81ae2e"),
+    id: "figma-my-school",
+    title: "My School",
+    note: "A school-management app — screens and flows designed end-to-end in Figma.",
+    image: unsplash("photo-1626785774573-4b799315345d"),
+  },
+];
+
+const VIDEO_WORKS: ShelfItem[] = [
+  {
+    id: "video-reels",
+    title: "Reels & Short-Form Edits",
+    note: "Social-ready cuts built for the first three seconds, not just the whole runtime.",
+    image: unsplash("photo-1574717024653-61fd2cf4d44d"),
+  },
+  {
+    id: "video-promo",
+    title: "Promo & Product Videos",
+    note: "Launch and walkthrough videos that carry a product's own visual language.",
+    image: unsplash("photo-1492619375914-88005aa9e8fb"),
+  },
+  {
+    id: "video-motion",
+    title: "Motion Graphics & Titles",
+    note: "Animated titles, lower-thirds, and overlays that make an edit feel finished.",
+    image: unsplash("photo-1536240478700-b869070f9279"),
   },
 ];
 
@@ -126,8 +135,8 @@ function shelfMatches(item: ShelfItem, q: string): boolean {
   return `${item.title} ${item.note}`.toLowerCase().includes(q);
 }
 
-/** Filter chips sitting beside the search field, above everything else. */
-const FILTERS = ["All", "Software", "Client Work", "Figma", "Graphic Design"] as const;
+/** Filter chips sitting under the search field, above everything else. */
+const FILTERS = ["All", "Software", "Client Work", "Graphic Design", "Video", "Figma"] as const;
 type Filter = (typeof FILTERS)[number];
 
 function WorkPage() {
@@ -157,6 +166,7 @@ function WorkPage() {
   const graphicItems = shows("Graphic Design")
     ? GRAPHIC_DESIGN_WORKS.filter((i) => shelfMatches(i, q))
     : [];
+  const videoItems = shows("Video") ? VIDEO_WORKS.filter((i) => shelfMatches(i, q)) : [];
 
   const noResults =
     q.length > 0 &&
@@ -164,7 +174,8 @@ function WorkPage() {
     recentItems.length === 0 &&
     earlierItems.length === 0 &&
     figmaItems.length === 0 &&
-    graphicItems.length === 0;
+    graphicItems.length === 0 &&
+    videoItems.length === 0;
 
   return (
     <PageShell>
@@ -172,8 +183,9 @@ function WorkPage() {
         <div className="mx-auto max-w-6xl">
           <Reveal>
             {/* Search and filters come first, straight under the nav, so the page
-                can be narrowed before any scrolling happens. */}
-            <div className="mb-14 flex flex-col gap-4 sm:mb-16 sm:flex-row sm:items-center sm:justify-between">
+                can be narrowed before any scrolling happens. Filters sit on their
+                own line, sized to always fit in one row rather than wrap. */}
+            <div className="mb-14 flex flex-col gap-3 sm:mb-16">
               <label className="relative block w-full sm:max-w-sm">
                 <Search className="text-subtle pointer-events-none absolute top-1/2 left-4 size-4 -translate-y-1/2" />
                 <input
@@ -194,14 +206,14 @@ function WorkPage() {
                   </button>
                 ) : null}
               </label>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-nowrap gap-1.5 overflow-x-auto pb-1">
                 {FILTERS.map((f) => (
                   <button
                     key={f}
                     type="button"
                     onClick={() => setFilter(f)}
                     aria-pressed={filter === f}
-                    className={`rounded-full px-3.5 py-1.5 text-xs whitespace-nowrap transition-colors ${
+                    className={`shrink-0 rounded-full px-2.5 py-1 text-[0.7rem] whitespace-nowrap transition-colors sm:text-xs ${
                       filter === f
                         ? "bg-fg text-bg"
                         : "text-muted hover:text-fg border border-border"
@@ -298,25 +310,6 @@ function WorkPage() {
             </>
           ) : null}
 
-          {figmaItems.length > 0 ? (
-            <>
-              <Reveal>
-                <h2 className="font-display mt-24 text-3xl tracking-tight sm:text-4xl">Figma Projects</h2>
-                <p className="text-muted mt-3 max-w-xl text-sm leading-relaxed text-justify sm:text-base [hyphens:auto]">
-                  Interface work done in Figma — systems, flows, and prototypes, built to be handed
-                  over rather than admired.
-                </p>
-              </Reveal>
-              <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {figmaItems.map((item, i) => (
-                  <Reveal key={item.id} delay={i * 0.05}>
-                    <ShelfCard item={item} />
-                  </Reveal>
-                ))}
-              </div>
-            </>
-          ) : null}
-
           {graphicItems.length > 0 ? (
             <>
               <Reveal>
@@ -328,6 +321,43 @@ function WorkPage() {
               </Reveal>
               <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {graphicItems.map((item, i) => (
+                  <Reveal key={item.id} delay={i * 0.05}>
+                    <ShelfCard item={item} />
+                  </Reveal>
+                ))}
+              </div>
+            </>
+          ) : null}
+
+          {videoItems.length > 0 ? (
+            <>
+              <Reveal>
+                <h2 className="font-display mt-24 text-3xl tracking-tight sm:text-4xl">Video Editing & Creation</h2>
+                <p className="text-muted mt-3 max-w-xl text-sm leading-relaxed text-justify sm:text-base [hyphens:auto]">
+                  Cuts, motion, and short-form work — built to hold attention, not just fill a timeline.
+                </p>
+              </Reveal>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {videoItems.map((item, i) => (
+                  <Reveal key={item.id} delay={i * 0.05}>
+                    <ShelfCard item={item} />
+                  </Reveal>
+                ))}
+              </div>
+            </>
+          ) : null}
+
+          {figmaItems.length > 0 ? (
+            <>
+              <Reveal>
+                <h2 className="font-display mt-24 text-3xl tracking-tight sm:text-4xl">Figma Projects</h2>
+                <p className="text-muted mt-3 max-w-xl text-sm leading-relaxed text-justify sm:text-base [hyphens:auto]">
+                  Interface work done in Figma — systems, flows, and prototypes, built to be handed
+                  over rather than admired.
+                </p>
+              </Reveal>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {figmaItems.map((item, i) => (
                   <Reveal key={item.id} delay={i * 0.05}>
                     <ShelfCard item={item} />
                   </Reveal>
