@@ -36,7 +36,7 @@ function AdminLoginPage() {
         className="border-border w-full max-w-sm rounded-2xl border bg-bg-elevated p-8 shadow-[var(--shadow-border)]"
       >
         <p className="text-subtle font-mono text-2xs tracking-[0.2em] uppercase">Admin</p>
-        <h1 className="font-display mt-2 text-3xl tracking-tight">Enter the password.</h1>
+        <h1 className="font-display mt-2 text-3xl tracking-tight">Enter the password</h1>
         <label className="mt-6 block">
           <span className="text-subtle text-xs tracking-wide">Password</span>
           <input

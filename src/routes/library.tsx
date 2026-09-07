@@ -21,7 +21,7 @@ function LibraryPage() {
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <p className="text-subtle mb-4 font-mono text-2xs tracking-[0.2em] uppercase">Apex Wright Lab</p>
-            <h1 className="font-display text-5xl tracking-tight sm:text-7xl">The library.</h1>
+            <h1 className="font-display text-5xl tracking-tight sm:text-7xl">The library</h1>
             <p className="text-muted mt-5 max-w-2xl text-base leading-relaxed text-justify [hyphens:auto]">
               Guides, summary books, and written works from Apex Wright Lab's own catalogue — some
               self-published, some built directly from client work. Pick a title to open it.

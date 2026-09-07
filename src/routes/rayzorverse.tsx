@@ -17,7 +17,7 @@ function RayzorVersePage() {
               RayzorVerse · 2026
             </p>
             <h1 className="font-display max-w-3xl text-5xl tracking-tight sm:text-7xl">
-              A venture ecosystem, not a single bet.
+              A venture ecosystem, not a single bet
             </h1>
             <p className="text-muted mt-6 max-w-2xl text-base leading-relaxed text-justify [hyphens:auto]">
               RayzorVerse is the home I built for software products, creative services, writing, and
@@ -64,7 +64,7 @@ function RayzorVersePage() {
 
           <Reveal>
             <h2 className="font-display mt-28 text-3xl tracking-tight sm:text-4xl">
-              One ecosystem. Many ways to build.
+              One ecosystem. Many ways to build
             </h2>
             <p className="text-muted mt-4 max-w-2xl text-base leading-relaxed text-justify [hyphens:auto]">
               Under RayzorVerse, different divisions focus on different problems — from software
@@ -97,7 +97,7 @@ function RayzorVersePage() {
 
           <Reveal>
             <h2 className="font-display mt-28 text-3xl tracking-tight sm:text-4xl">
-              Built with people, not just code.
+              Built with people, not just code
             </h2>
             <p className="text-muted mt-4 max-w-2xl text-base leading-relaxed text-justify [hyphens:auto]">
               Some of the most valuable things I’ve worked on weren’t entirely mine. I’ve

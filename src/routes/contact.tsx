@@ -31,7 +31,7 @@ function ContactPage() {
             <p className="text-subtle mb-4 font-mono text-2xs tracking-[0.2em] uppercase">
               {SITE.availability}
             </p>
-            <h1 className="font-display text-5xl tracking-tight sm:text-7xl">Let’s talk.</h1>
+            <h1 className="font-display text-5xl tracking-tight sm:text-7xl">Let’s talk</h1>
           </Reveal>
           <div className="mt-12 grid gap-12 lg:grid-cols-2">
             <Reveal delay={0.08}>
@@ -104,7 +104,7 @@ function ContactPage() {
             <Reveal delay={0.08}>
               <div className="h-full rounded-2xl bg-bg-elevated p-6 shadow-[var(--shadow-border)] sm:p-8">
                 <p className="text-subtle font-mono text-2xs tracking-[0.16em] uppercase">Show some love</p>
-                <h2 className="font-display mt-2 text-2xl tracking-tight">Support the work.</h2>
+                <h2 className="font-display mt-2 text-2xl tracking-tight">Support the work</h2>
                 <p className="text-muted mt-3 text-sm leading-relaxed text-justify [hyphens:auto]">
                   A lot of what’s here is built independently, through long nights and constant
                   iteration. If something helped you or made you curious about what’s next, say so.

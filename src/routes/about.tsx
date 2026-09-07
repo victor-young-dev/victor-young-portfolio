@@ -35,7 +35,7 @@ function AboutPage() {
             <div className="flex flex-col justify-center">
               <Reveal>
                 <p className="text-subtle mb-4 font-mono text-2xs tracking-[0.2em] uppercase">About</p>
-                <h1 className="font-display text-5xl tracking-tight sm:text-6xl">I’m Victor Young.</h1>
+                <h1 className="font-display text-5xl tracking-tight sm:text-6xl">I’m Victor Young</h1>
                 <p className="font-display text-muted mt-1 text-2xl italic tracking-tight sm:text-3xl">
                   {SITE.legal} when the paperwork matters.
                 </p>
