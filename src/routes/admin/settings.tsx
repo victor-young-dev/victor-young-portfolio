@@ -4,6 +4,7 @@ import { requireAdminOrRedirect } from "@/lib/admin/session";
 import { getEducation, getSiteSettings, updateEducation, updateSiteSettings } from "@/lib/admin/collections/settings";
 import { AdminShell } from "@/components/admin/admin-shell";
 import { Button } from "@/components/ui/button";
+import { fieldLabelClass, inputClass, panelClass, textareaClass } from "@/components/admin/admin-ui";
 
 export const Route = createFileRoute("/admin/settings")({
   beforeLoad: requireAdminOrRedirect,
@@ -100,60 +101,64 @@ function SettingsAdmin() {
 
   return (
     <AdminShell title="Site settings">
-      <div className="flex flex-col gap-10">
-        <section>
+      <div className="flex flex-col gap-6">
+        <section className={panelClass}>
           <h2 className="font-display text-2xl tracking-tight">Profile & contact</h2>
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div className="mt-5 grid gap-x-5 gap-y-4 sm:grid-cols-2">
             {SITE_FIELDS.map(([key, label]) => (
               <label key={key} className="block">
-                <span className="text-subtle text-xs tracking-wide">{label}</span>
+                <span className={fieldLabelClass}>{label}</span>
                 <input
                   value={(siteValues[key] as string) ?? ""}
                   onChange={(e) => setSiteValues({ ...siteValues, [key]: e.target.value })}
-                  className="mt-1.5 h-10 w-full rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className={inputClass}
                 />
               </label>
             ))}
             <label className="block sm:col-span-2">
-              <span className="text-subtle text-xs tracking-wide">Phone numbers (comma-separated)</span>
+              <span className={fieldLabelClass}>Phone numbers (comma-separated)</span>
               <input
                 value={phones.join(", ")}
                 onChange={(e) => setPhones(e.target.value.split(",").map((s) => s.trim()).filter(Boolean))}
-                className="mt-1.5 h-10 w-full rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={inputClass}
               />
             </label>
             <label className="block sm:col-span-2">
-              <span className="text-subtle text-xs tracking-wide">Philosophy quote (About page)</span>
+              <span className={fieldLabelClass}>Philosophy quote (About page)</span>
               <textarea
                 value={philosophy}
                 onChange={(e) => setPhilosophy(e.target.value)}
                 rows={4}
-                className="mt-1.5 w-full resize-none rounded-lg border-0 bg-bg-subtle px-3 py-2 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={textareaClass}
               />
             </label>
           </div>
-          <Button size="sm" className="mt-4" onClick={saveSite} disabled={savingSite}>
-            {savingSite ? "Saving…" : "Save profile & contact"}
-          </Button>
+          <div className="border-border mt-5 border-t pt-5">
+            <Button size="sm" onClick={saveSite} disabled={savingSite}>
+              {savingSite ? "Saving…" : "Save profile & contact"}
+            </Button>
+          </div>
         </section>
 
-        <section>
+        <section className={panelClass}>
           <h2 className="font-display text-2xl tracking-tight">Education</h2>
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div className="mt-5 grid gap-x-5 gap-y-4 sm:grid-cols-2">
             {EDU_FIELDS.map(([key, label]) => (
               <label key={key} className="block">
-                <span className="text-subtle text-xs tracking-wide">{label}</span>
+                <span className={fieldLabelClass}>{label}</span>
                 <input
                   value={(eduValues[key] as string) ?? ""}
                   onChange={(e) => setEduValues({ ...eduValues, [key]: e.target.value })}
-                  className="mt-1.5 h-10 w-full rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className={inputClass}
                 />
               </label>
             ))}
           </div>
-          <Button size="sm" className="mt-4" onClick={saveEdu} disabled={savingEdu}>
-            {savingEdu ? "Saving…" : "Save education"}
-          </Button>
+          <div className="border-border mt-5 border-t pt-5">
+            <Button size="sm" onClick={saveEdu} disabled={savingEdu}>
+              {savingEdu ? "Saving…" : "Save education"}
+            </Button>
+          </div>
         </section>
       </div>
     </AdminShell>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Pencil, Plus, Trash2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ImageField } from "@/components/admin/image-field";
+import { fieldLabelClass, inputClass, panelClass, rowClass, selectClass, textareaClass } from "@/components/admin/admin-ui";
 
 export type FieldSchema = {
   key: string;
@@ -88,10 +89,10 @@ export function CollectionEditor<T extends Row>({
       <div className="flex items-end justify-between gap-4">
         <div>
           <h2 className="font-display text-2xl tracking-tight sm:text-3xl">{title}</h2>
-          {description ? <p className="text-muted mt-1 text-sm">{description}</p> : null}
+          {description ? <p className="text-muted mt-1.5 text-sm">{description}</p> : null}
         </div>
         {editingId === null ? (
-          <Button size="sm" onClick={startNew}>
+          <Button size="sm" onClick={startNew} className="shrink-0">
             <Plus className="size-4" />
             Add
           </Button>
@@ -99,9 +100,12 @@ export function CollectionEditor<T extends Row>({
       </div>
 
       {editingId !== null ? (
-        <div className="border-border mt-4 rounded-xl border bg-bg-elevated p-5">
+        <div className={`${panelClass} border-accent/30 mt-5 border-l-2`}>
+          <p className="text-subtle mb-4 font-mono text-2xs tracking-[0.16em] uppercase">
+            {editingId === "new" ? "New entry" : "Editing"}
+          </p>
           <FieldForm fields={fields} values={values} setValues={setValues} />
-          <div className="mt-4 flex gap-2">
+          <div className="border-border mt-5 flex gap-2 border-t pt-5">
             <Button size="sm" onClick={submit} disabled={pending}>
               {editingId === "new" ? "Create" : "Save"}
             </Button>
@@ -113,16 +117,13 @@ export function CollectionEditor<T extends Row>({
         </div>
       ) : null}
 
-      <div className="mt-4 flex flex-col gap-2">
+      <div className="mt-5 flex flex-col gap-2.5">
         {items.map((item) => (
-          <div
-            key={item.id}
-            className="border-border flex items-center justify-between gap-4 rounded-lg border bg-bg-elevated px-4 py-3"
-          >
+          <div key={item.id} className={rowClass}>
             <p className="truncate text-sm font-medium">
               {renderTitle ? renderTitle(item) : String(item[fields[0]?.key] ?? item.id)}
             </p>
-            <div className="flex shrink-0 gap-1">
+            <div className="flex shrink-0 gap-1 opacity-70 transition-opacity group-hover:opacity-100">
               <Button size="icon" variant="ghost" onClick={() => startEdit(item)} aria-label="Edit">
                 <Pencil className="size-4" />
               </Button>
@@ -132,7 +133,11 @@ export function CollectionEditor<T extends Row>({
             </div>
           </div>
         ))}
-        {items.length === 0 ? <p className="text-subtle text-sm">Nothing here yet.</p> : null}
+        {items.length === 0 ? (
+          <div className="border-border rounded-xl border border-dashed p-8 text-center">
+            <p className="text-subtle text-sm">Nothing here yet — add the first one above.</p>
+          </div>
+        ) : null}
       </div>
     </div>
   );
@@ -149,19 +154,19 @@ function FieldForm({
 }) {
   const set = (key: string, v: unknown) => setValues({ ...values, [key]: v });
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
+    <div className="grid gap-x-5 gap-y-4 sm:grid-cols-2">
       {fields.map((f) => {
         const full = f.type === "textarea" || f.type === "array" || f.type === "image";
         return (
           <label key={f.key} className={full ? "sm:col-span-2 block" : "block"}>
-            <span className="text-subtle text-xs tracking-wide">{f.label}</span>
+            <span className={fieldLabelClass}>{f.label}</span>
             {f.type === "textarea" ? (
               <textarea
                 value={(values[f.key] as string) ?? ""}
                 onChange={(e) => set(f.key, e.target.value)}
                 rows={4}
                 placeholder={f.placeholder}
-                className="mt-1.5 w-full resize-none rounded-lg border-0 bg-bg-subtle px-3 py-2 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={textareaClass}
               />
             ) : f.type === "array" ? (
               <input
@@ -170,13 +175,13 @@ function FieldForm({
                 }
                 onChange={(e) => set(f.key, e.target.value)}
                 placeholder="Comma-separated"
-                className="mt-1.5 h-10 w-full rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={inputClass}
               />
             ) : f.type === "select" ? (
               <select
                 value={(values[f.key] as string) ?? ""}
                 onChange={(e) => set(f.key, e.target.value)}
-                className="mt-1.5 h-10 w-full rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={selectClass}
               >
                 {(f.options ?? []).map((o) => (
                   <option key={o} value={o}>
@@ -191,7 +196,7 @@ function FieldForm({
                 value={(values[f.key] as string) ?? ""}
                 onChange={(e) => set(f.key, e.target.value)}
                 placeholder={f.placeholder}
-                className="mt-1.5 h-10 w-full rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={inputClass}
               />
             )}
           </label>

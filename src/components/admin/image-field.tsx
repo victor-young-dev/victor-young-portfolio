@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Upload } from "lucide-react";
 import { uploadFile } from "@/lib/admin/upload";
+import { inputClass } from "@/components/admin/admin-ui";
 
 /** Paste a URL, or upload a file straight from disk — either lands in the same field. */
 export function ImageField({ value, onChange }: { value: string; onChange: (url: string) => void }) {
@@ -35,13 +36,13 @@ export function ImageField({ value, onChange }: { value: string; onChange: (url:
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder="Paste an image URL, or upload"
-          className="h-10 w-full rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className={`${inputClass} mt-0`}
         />
         <button
           type="button"
           onClick={pickFile}
           disabled={busy}
-          className="border-border flex h-10 shrink-0 items-center gap-1.5 rounded-md border px-3 text-xs text-muted hover:text-fg disabled:opacity-50"
+          className="border-border bg-bg-elevated flex h-10 shrink-0 items-center gap-1.5 rounded-lg border px-3.5 text-xs text-muted shadow-[var(--shadow-border)] transition-colors hover:text-fg disabled:opacity-50"
         >
           <Upload className="size-3.5" />
           {busy ? "Uploading…" : "Upload"}
@@ -50,7 +51,11 @@ export function ImageField({ value, onChange }: { value: string; onChange: (url:
       </div>
       {error ? <p className="text-danger mt-1.5 text-xs">{error}</p> : null}
       {value ? (
-        <img src={value} alt="" className="border-border mt-2 h-20 w-32 rounded-md border object-cover" />
+        <img
+          src={value}
+          alt=""
+          className="mt-3 h-24 w-40 rounded-lg bg-bg-subtle object-cover shadow-[var(--shadow-border)]"
+        />
       ) : null}
     </div>
   );

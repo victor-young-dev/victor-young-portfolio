@@ -8,8 +8,15 @@ import { Reveal } from "@/components/site/reveal";
 import { InitialTile } from "@/components/site/initial-tile";
 import { LiteYouTube } from "@/components/site/lite-youtube";
 import type { GalleryItem } from "@/lib/site-content";
+import { AppNotFoundComponent } from "@/lib/error-component";
 
-export const Route = createFileRoute("/work/$slug")({ component: WorkDetail });
+// notFound() below is thrown during render rather than from a loader, which the
+// router's defaultNotFoundComponent does not cover — so the 404 page is wired
+// to this route explicitly. Without it a stale /work/<slug> link renders blank.
+export const Route = createFileRoute("/work/$slug")({
+  component: WorkDetail,
+  notFoundComponent: AppNotFoundComponent,
+});
 
 function WorkDetail() {
   const { slug } = Route.useParams();

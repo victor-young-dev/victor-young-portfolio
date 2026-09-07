@@ -7,6 +7,7 @@ import { AdminShell } from "@/components/admin/admin-shell";
 import { Button } from "@/components/ui/button";
 import { ImageField } from "@/components/admin/image-field";
 import { GalleryEditor } from "@/components/admin/gallery-editor";
+import { fieldLabelClass, inputClass, panelClass, rowClass, selectClass, textareaClass } from "@/components/admin/admin-ui";
 
 export const Route = createFileRoute("/admin/work")({
   beforeLoad: requireAdminOrRedirect,
@@ -122,13 +123,13 @@ function WorkAdmin() {
       <div className="flex items-end justify-between gap-4">
         <div>
           <h2 className="font-display text-2xl tracking-tight">Work items</h2>
-          <p className="text-muted mt-1 text-sm">
+          <p className="text-muted mt-1.5 text-sm">
             Rayzor Labs products and brand/client case studies. "Kind" decides which section they show
             under on the Work page.
           </p>
         </div>
         {editingId === null ? (
-          <Button size="sm" onClick={startNew}>
+          <Button size="sm" onClick={startNew} className="shrink-0">
             <Plus className="size-4" />
             Add
           </Button>
@@ -136,105 +137,108 @@ function WorkAdmin() {
       </div>
 
       {editingId !== null ? (
-        <div className="border-border mt-4 rounded-xl border bg-bg-elevated p-5">
-          <div className="grid gap-4 sm:grid-cols-2">
+        <div className={`${panelClass} border-accent/30 mt-5 border-l-2`}>
+          <p className="text-subtle mb-4 font-mono text-2xs tracking-[0.16em] uppercase">
+            {editingId === "new" ? "New work item" : "Editing"}
+          </p>
+          <div className="grid gap-x-5 gap-y-4 sm:grid-cols-2">
             <label className="block">
-              <span className="text-subtle text-xs tracking-wide">Kind</span>
+              <span className={fieldLabelClass}>Kind</span>
               <select
                 value={String(form.kind)}
                 onChange={(e) => setForm({ ...form, kind: e.target.value })}
-                className="mt-1.5 h-10 w-full rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={selectClass}
               >
                 <option value="product">Product (Rayzor Labs)</option>
                 <option value="client">Client / brand work</option>
               </select>
             </label>
             <label className="block">
-              <span className="text-subtle text-xs tracking-wide">Slug</span>
+              <span className={fieldLabelClass}>Slug</span>
               <input
                 value={String(form.slug ?? "")}
                 onChange={(e) => setForm({ ...form, slug: e.target.value })}
-                className="mt-1.5 h-10 w-full rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={inputClass}
               />
             </label>
             <label className="block">
-              <span className="text-subtle text-xs tracking-wide">Title</span>
+              <span className={fieldLabelClass}>Title</span>
               <input
                 value={String(form.title ?? "")}
                 onChange={(e) => setForm({ ...form, title: e.target.value })}
-                className="mt-1.5 h-10 w-full rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={inputClass}
               />
             </label>
             <label className="block">
-              <span className="text-subtle text-xs tracking-wide">Year</span>
+              <span className={fieldLabelClass}>Year</span>
               <input
                 value={String(form.year ?? "")}
                 onChange={(e) => setForm({ ...form, year: e.target.value })}
-                className="mt-1.5 h-10 w-full rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={inputClass}
               />
             </label>
             <label className="block">
-              <span className="text-subtle text-xs tracking-wide">Status</span>
+              <span className={fieldLabelClass}>Status</span>
               <input
                 value={String(form.status ?? "")}
                 onChange={(e) => setForm({ ...form, status: e.target.value })}
                 placeholder="In development, Live, Client work…"
-                className="mt-1.5 h-10 w-full rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={inputClass}
               />
             </label>
             <label className="block">
-              <span className="text-subtle text-xs tracking-wide">Arm / category</span>
+              <span className={fieldLabelClass}>Arm / category</span>
               <input
                 value={String(form.arm ?? "")}
                 onChange={(e) => setForm({ ...form, arm: e.target.value })}
                 placeholder="Rayzor Labs, Marketing & Brand…"
-                className="mt-1.5 h-10 w-full rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={inputClass}
               />
             </label>
             <label className="block sm:col-span-2">
-              <span className="text-subtle text-xs tracking-wide">Summary</span>
+              <span className={fieldLabelClass}>Summary</span>
               <textarea
                 value={String(form.summary ?? "")}
                 onChange={(e) => setForm({ ...form, summary: e.target.value })}
                 rows={2}
-                className="mt-1.5 w-full resize-none rounded-lg border-0 bg-bg-subtle px-3 py-2 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={textareaClass}
               />
             </label>
             <label className="block sm:col-span-2">
-              <span className="text-subtle text-xs tracking-wide">Body</span>
+              <span className={fieldLabelClass}>Body</span>
               <textarea
                 value={String(form.body ?? "")}
                 onChange={(e) => setForm({ ...form, body: e.target.value })}
                 rows={5}
-                className="mt-1.5 w-full resize-none rounded-lg border-0 bg-bg-subtle px-3 py-2 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={textareaClass}
               />
             </label>
             <label className="block sm:col-span-2">
-              <span className="text-subtle text-xs tracking-wide">Cover image</span>
+              <span className={fieldLabelClass}>Cover image</span>
               <ImageField value={String(form.image ?? "")} onChange={(v) => setForm({ ...form, image: v })} />
             </label>
             <label className="block">
-              <span className="text-subtle text-xs tracking-wide">Tags (comma-separated)</span>
+              <span className={fieldLabelClass}>Tags (comma-separated)</span>
               <input
                 value={String(form.tags ?? "")}
                 onChange={(e) => setForm({ ...form, tags: e.target.value })}
-                className="mt-1.5 h-10 w-full rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={inputClass}
               />
             </label>
             <label className="block">
-              <span className="text-subtle text-xs tracking-wide">Live site URL (optional)</span>
+              <span className={fieldLabelClass}>Live site URL (optional)</span>
               <input
                 value={String(form.href ?? "")}
                 onChange={(e) => setForm({ ...form, href: e.target.value })}
-                className="mt-1.5 h-10 w-full rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={inputClass}
               />
             </label>
             <label className="block">
-              <span className="text-subtle text-xs tracking-wide">Sort order</span>
+              <span className={fieldLabelClass}>Sort order</span>
               <input
                 value={String(form.sort_order ?? 0)}
                 onChange={(e) => setForm({ ...form, sort_order: e.target.value })}
-                className="mt-1.5 h-10 w-full rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className={inputClass}
               />
             </label>
           </div>
@@ -249,7 +253,7 @@ function WorkAdmin() {
             <p className="text-subtle mt-4 text-xs">Save this item first, then its gallery can be managed here.</p>
           )}
 
-          <div className="mt-4 flex gap-2">
+          <div className="border-border mt-5 flex gap-2 border-t pt-5">
             <Button size="sm" onClick={submit} disabled={pending}>
               {editingId === "new" ? "Create" : "Save"}
             </Button>
@@ -261,19 +265,25 @@ function WorkAdmin() {
         </div>
       ) : null}
 
-      <div className="mt-6 flex flex-col gap-2">
+      <div className="mt-6 flex flex-col gap-2.5">
         {items.map((item) => (
-          <div
-            key={item.id}
-            className="border-border flex items-center justify-between gap-4 rounded-lg border bg-bg-elevated px-4 py-3"
-          >
+          <div key={item.id} className={rowClass}>
             <div className="min-w-0">
-              <p className="truncate text-sm font-medium">{item.title}</p>
-              <p className="text-subtle truncate text-xs">
-                {item.kind} · {item.arm} · {item.status}
+              <div className="flex items-center gap-2">
+                <span
+                  className={`shrink-0 rounded-full px-2 py-0.5 font-mono text-2xs uppercase tracking-[0.08em] ${
+                    item.kind === "product" ? "bg-accent/15 text-accent" : "bg-fg/8 text-muted"
+                  }`}
+                >
+                  {item.kind}
+                </span>
+                <p className="truncate text-sm font-medium">{item.title}</p>
+              </div>
+              <p className="text-subtle mt-1 truncate text-xs">
+                {item.arm} · {item.status}
               </p>
             </div>
-            <div className="flex shrink-0 gap-1">
+            <div className="flex shrink-0 gap-1 opacity-70 transition-opacity group-hover:opacity-100">
               <Button size="icon" variant="ghost" onClick={() => startEdit(item)} aria-label="Edit">
                 <Pencil className="size-4" />
               </Button>

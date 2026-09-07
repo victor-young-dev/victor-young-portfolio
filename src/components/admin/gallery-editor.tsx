@@ -5,6 +5,7 @@ import {
   deleteGalleryItem,
 } from "@/lib/admin/collections/work";
 import { uploadFile } from "@/lib/admin/upload";
+import { inputClass } from "@/components/admin/admin-ui";
 
 type GalleryRow = {
   id: number;
@@ -122,24 +123,31 @@ export function GalleryEditor({
   };
 
   return (
-    <div className="border-border mt-4 border-t pt-4">
-      <p className="text-subtle text-xs tracking-wide uppercase">Gallery</p>
-      <div className="mt-2 flex flex-col gap-2">
+    <div className="border-border mt-5 border-t pt-5">
+      <p className="text-subtle font-mono text-2xs tracking-[0.16em] uppercase">Gallery</p>
+      <div className="mt-3 flex flex-col gap-2">
         {items.map((g) => (
-          <div key={g.id} className="border-border flex items-center justify-between gap-3 rounded-md border px-3 py-2">
-            <div className="flex min-w-0 items-center gap-2">
+          <div
+            key={g.id}
+            className="bg-bg-subtle flex items-center justify-between gap-3 rounded-lg px-3.5 py-2.5"
+          >
+            <div className="flex min-w-0 items-center gap-2.5">
               {g.kind === "video" ? (
                 <Youtube className="text-subtle size-4 shrink-0" />
               ) : g.kind === "document" ? (
                 <FileText className="text-subtle size-4 shrink-0" />
               ) : (
-                <img src={g.src ?? undefined} alt="" className="size-8 shrink-0 rounded object-cover" />
+                <img
+                  src={g.src ?? undefined}
+                  alt=""
+                  className="size-8 shrink-0 rounded-md object-cover shadow-[var(--shadow-border)]"
+                />
               )}
               <span className="truncate text-sm">
                 {g.kind === "video" ? g.title || `YouTube: ${g.youtube_id}` : g.title || g.src}
               </span>
             </div>
-            <button type="button" onClick={() => remove(g.id)} disabled={busy} className="text-subtle hover:text-danger shrink-0">
+            <button type="button" onClick={() => remove(g.id)} disabled={busy} className="text-subtle hover:text-danger shrink-0 transition-colors">
               <Trash2 className="size-4" />
             </button>
           </div>
@@ -147,20 +155,20 @@ export function GalleryEditor({
         {items.length === 0 ? <p className="text-subtle text-sm">No gallery items yet.</p> : null}
       </div>
 
-      <div className="mt-3 flex flex-wrap items-center gap-2">
+      <div className="mt-4 flex flex-wrap items-center gap-2">
         <input
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           placeholder="Paste an image URL, a YouTube link, or a document URL"
-          className="h-9 min-w-0 flex-1 rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className={`${inputClass} mt-0 h-9 min-w-0 flex-1`}
         />
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Title (optional)"
-          className="h-9 w-40 rounded-md border-0 bg-bg-subtle px-3 text-sm text-fg outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className={`${inputClass} mt-0 h-9 w-40`}
         />
-        <label className="flex items-center gap-1.5 text-xs text-muted">
+        <label className="text-muted flex items-center gap-1.5 text-xs">
           <input type="checkbox" checked={asDocument} onChange={(e) => setAsDocument(e.target.checked)} />
           Document
         </label>
@@ -168,7 +176,7 @@ export function GalleryEditor({
           type="button"
           onClick={add}
           disabled={busy || !url.trim()}
-          className="border-border h-9 rounded-md border px-3 text-xs text-muted hover:text-fg disabled:opacity-50"
+          className="border-border bg-bg-elevated h-9 rounded-lg border px-3.5 text-xs text-muted shadow-[var(--shadow-border)] transition-colors hover:text-fg disabled:opacity-50"
         >
           Add
         </button>
@@ -176,7 +184,7 @@ export function GalleryEditor({
           type="button"
           onClick={() => fileRef.current?.click()}
           disabled={busy}
-          className="border-border flex h-9 items-center gap-1.5 rounded-md border px-3 text-xs text-muted hover:text-fg disabled:opacity-50"
+          className="border-border bg-bg-elevated flex h-9 items-center gap-1.5 rounded-lg border px-3.5 text-xs text-muted shadow-[var(--shadow-border)] transition-colors hover:text-fg disabled:opacity-50"
         >
           <Upload className="size-3.5" />
           Upload image
