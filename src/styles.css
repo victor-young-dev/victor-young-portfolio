@@ -232,6 +232,30 @@ html.light .grain {
   mix-blend-mode: multiply;
 }
 
+.fab-trigger {
+  position: fixed;
+}
+
+.fab-pulse-ring {
+  border: 1.5px solid rgb(31 95 139 / 0.55);
+  animation: fab-pulse 2.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@keyframes fab-pulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.6;
+  }
+  70% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
 .marquee-track {
   display: flex;
   width: max-content;

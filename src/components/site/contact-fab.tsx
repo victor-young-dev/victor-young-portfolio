@@ -12,14 +12,16 @@ export function ContactFab() {
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
-      <Magnetic className="fixed right-5 bottom-6 z-30 sm:right-8 sm:bottom-8">
+      <Magnetic className="fab-trigger fixed right-5 bottom-6 z-30 grid place-items-center sm:right-8 sm:bottom-8">
+        <span className="fab-pulse-ring pointer-events-none absolute inset-0 rounded-full" aria-hidden />
+        <span className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-white/15" aria-hidden />
         <Dialog.Trigger asChild>
           <button
             type="button"
             aria-label="Contact Victor"
-            className="grid size-14 place-items-center rounded-full bg-accent text-accent-fg shadow-[0_8px_30px_-8px_var(--vy-accent)] transition-transform duration-200 hover:scale-105 active:scale-95"
+            className="group relative grid size-14 place-items-center rounded-full bg-[linear-gradient(145deg,#0a1a2f_0%,#173a5c_45%,#1f5f8b_100%)] text-white shadow-[0_8px_28px_-6px_rgba(5,13,24,0.7),inset_0_1px_1px_rgba(255,255,255,0.18)] transition-all duration-300 hover:shadow-[0_10px_34px_-4px_rgba(31,95,139,0.8),inset_0_1px_1px_rgba(255,255,255,0.28)] hover:scale-[1.08] active:scale-95"
           >
-            <MessageSquareText className="size-6" />
+            <MessageSquareText className="size-6 transition-transform duration-300 group-hover:scale-110" />
           </button>
         </Dialog.Trigger>
       </Magnetic>
