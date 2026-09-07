@@ -78,12 +78,6 @@ const VIDEO_WORKS: ShelfItem[] = [
     image: unsplash("photo-1574717024653-61fd2cf4d44d"),
   },
   {
-    id: "video-promo",
-    title: "Promo & Product Videos",
-    note: "Launch and walkthrough videos that carry a product's own visual language.",
-    image: unsplash("photo-1492619375914-88005aa9e8fb"),
-  },
-  {
     id: "video-motion",
     title: "Motion Graphics & Titles",
     note: "Animated titles, lower-thirds, and overlays that make an edit feel finished.",
@@ -103,24 +97,6 @@ const GRAPHIC_DESIGN_WORKS: ShelfItem[] = [
     title: "Posters & Flyers",
     note: "Print and social flyers for launches, events, and seasonal campaigns.",
     image: unsplash("photo-1609921212029-bb5a28e60960"),
-  },
-  {
-    id: "gd-social",
-    title: "Social Media Graphics",
-    note: "Feed and story sets built to hold one look across a whole campaign.",
-    image: unsplash("photo-1558655146-9f40138edfeb"),
-  },
-  {
-    id: "gd-typography",
-    title: "Typography & Lettering",
-    note: "Type-led pieces where the words carry the whole composition.",
-    image: unsplash("photo-1541462608143-67571c6738dd"),
-  },
-  {
-    id: "gd-catalogues",
-    title: "Product Catalogues",
-    note: "Catalogue and price-list visuals laid out to read on WhatsApp and in print.",
-    image: unsplash("photo-1572044162444-ad60f128bdea"),
   },
   {
     id: "gd-mockups",
