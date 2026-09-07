@@ -77,12 +77,6 @@ const VIDEO_WORKS: ShelfItem[] = [
     note: "Social-ready cuts built for the first three seconds, not just the whole runtime.",
     image: unsplash("photo-1574717024653-61fd2cf4d44d"),
   },
-  {
-    id: "video-motion",
-    title: "Motion Graphics & Titles",
-    note: "Animated titles, lower-thirds, and overlays that make an edit feel finished.",
-    image: unsplash("photo-1536240478700-b869070f9279"),
-  },
 ];
 
 const GRAPHIC_DESIGN_WORKS: ShelfItem[] = [
