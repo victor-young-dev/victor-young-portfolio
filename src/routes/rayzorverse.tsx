@@ -19,7 +19,7 @@ function RayzorVersePage() {
             <h1 className="font-display max-w-3xl text-5xl tracking-tight sm:text-7xl">
               A venture ecosystem, not a single bet.
             </h1>
-            <p className="text-muted mt-6 max-w-2xl text-base leading-relaxed">
+            <p className="text-muted mt-6 max-w-2xl text-base leading-relaxed text-justify [hyphens:auto]">
               RayzorVerse is the home I built for software products, creative services, writing, and
               business systems. It placed 1st at the South-East regional first stage of the 2026
               National Enterprise Challenge.
@@ -44,7 +44,7 @@ function RayzorVersePage() {
                       {v.year} · {v.role}
                     </p>
                     <h2 className="font-display mt-3 text-3xl tracking-tight sm:text-4xl">{v.title}</h2>
-                    <p className="text-muted mt-4 text-sm leading-relaxed sm:text-base">{v.copy}</p>
+                    <p className="text-muted mt-4 text-sm leading-relaxed text-justify sm:text-base [hyphens:auto]">{v.copy}</p>
                     {v.href ? (
                       <a
                         href={v.href}
@@ -66,7 +66,7 @@ function RayzorVersePage() {
             <h2 className="font-display mt-28 text-3xl tracking-tight sm:text-4xl">
               One ecosystem. Many ways to build.
             </h2>
-            <p className="text-muted mt-4 max-w-2xl text-base leading-relaxed">
+            <p className="text-muted mt-4 max-w-2xl text-base leading-relaxed text-justify [hyphens:auto]">
               Under RayzorVerse, different divisions focus on different problems — from software
               products to writing and brand. The goal isn’t to build everything at once; it’s a
               connected ecosystem where ideas can be developed, tested, launched, and grown.
@@ -99,7 +99,7 @@ function RayzorVersePage() {
             <h2 className="font-display mt-28 text-3xl tracking-tight sm:text-4xl">
               Built with people, not just code.
             </h2>
-            <p className="text-muted mt-4 max-w-2xl text-base leading-relaxed">
+            <p className="text-muted mt-4 max-w-2xl text-base leading-relaxed text-justify [hyphens:auto]">
               Some of the most valuable things I’ve worked on weren’t entirely mine. I’ve
               contributed development and design to projects led by other people — clearly credited
               as theirs.
@@ -111,7 +111,7 @@ function RayzorVersePage() {
                 <div className="rounded-xl bg-bg-elevated p-6 shadow-[var(--shadow-border)]">
                   <p className="text-subtle font-mono text-2xs tracking-[0.16em] uppercase">{c.role}</p>
                   <h3 className="font-display mt-2 text-2xl tracking-tight">{c.title}</h3>
-                  <p className="text-muted mt-3 text-sm leading-relaxed">{c.copy}</p>
+                  <p className="text-muted mt-3 text-sm leading-relaxed text-justify [hyphens:auto]">{c.copy}</p>
                 </div>
               </Reveal>
             ))}

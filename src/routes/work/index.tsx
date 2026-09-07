@@ -17,7 +17,7 @@ function WorkPage() {
           <Reveal>
             <p className="text-subtle mb-4 font-mono text-2xs tracking-[0.2em] uppercase">Work</p>
             <h1 className="font-display text-5xl tracking-tight sm:text-7xl">Selected work.</h1>
-            <p className="text-muted mt-5 max-w-2xl text-base leading-relaxed">
+            <p className="text-muted mt-5 max-w-2xl text-base leading-relaxed text-justify [hyphens:auto]">
               What I've built and delivered — some of it solo, some of it with Team RayzorVerse, the
               collaborators I bring in when a brief needs more hands than mine.
             </p>
@@ -54,7 +54,7 @@ function WorkPage() {
                         {String(i + 1).padStart(2, "0")} / {item.arm} · {item.status}
                       </p>
                       <h3 className="font-display text-3xl tracking-tight sm:text-4xl">{item.title}</h3>
-                      <p className="text-muted mt-3 text-sm leading-relaxed sm:text-base">{item.summary}</p>
+                      <p className="text-muted mt-3 text-sm leading-relaxed text-justify sm:text-base [hyphens:auto]">{item.summary}</p>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {item.tags.map((t) => (
@@ -71,7 +71,7 @@ function WorkPage() {
 
           <Reveal>
             <h2 className="font-display mt-24 text-3xl tracking-tight sm:text-4xl">Brand & client work</h2>
-            <p className="text-muted mt-3 max-w-xl text-sm leading-relaxed sm:text-base">
+            <p className="text-muted mt-3 max-w-xl text-sm leading-relaxed text-justify sm:text-base [hyphens:auto]">
               BrandiLux's own showcase, and the businesses I've delivered creative and digital work
               for — directly or through Team RayzorVerse.
             </p>
@@ -100,7 +100,7 @@ function WorkPage() {
                       {item.arm} · {item.status}
                     </p>
                     <h3 className="font-display text-2xl tracking-tight">{item.title}</h3>
-                    <p className="text-muted mt-2 text-sm leading-relaxed">{item.summary}</p>
+                    <p className="text-muted mt-2 text-sm leading-relaxed text-justify [hyphens:auto]">{item.summary}</p>
                   </div>
                 </Link>
               </Reveal>
@@ -109,7 +109,7 @@ function WorkPage() {
 
           <Reveal>
             <h2 className="font-display mt-24 text-3xl tracking-tight sm:text-4xl">How I can help</h2>
-            <p className="text-muted mt-3 max-w-2xl text-sm leading-relaxed sm:text-base">
+            <p className="text-muted mt-3 max-w-2xl text-sm leading-relaxed text-justify sm:text-base [hyphens:auto]">
               I deliver individually for focused work. For bigger, more complex briefs, I gather Team
               RayzorVerse — trusted specialists — around it.
             </p>
@@ -136,7 +136,7 @@ function WorkPage() {
                 <h2 className="font-display text-2xl tracking-tight sm:text-3xl">
                   Have something more complex?
                 </h2>
-                <p className="text-muted mt-2 max-w-md text-sm leading-relaxed">
+                <p className="text-muted mt-2 max-w-md text-sm leading-relaxed text-justify [hyphens:auto]">
                   Team RayzorVerse can take on bigger builds than one person should carry alone.
                 </p>
               </div>

@@ -1,24 +1,10 @@
 import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { AnimatePresence, motion } from "motion/react";
-import { Mail, MessageSquareText, Phone, X } from "lucide-react";
-import { CONTACT_CHANNELS, type ContactChannel } from "@/lib/personal-contact";
-import { WhatsAppIcon } from "@/components/site/brand-icons";
+import { MessageSquareText, X } from "lucide-react";
+import { CONTACT_CHANNELS } from "@/lib/personal-contact";
+import { CHANNEL_ICONS, CHANNEL_TINTS } from "@/components/site/contact-channel-ui";
 import { Magnetic } from "@/components/site/magnetic";
-
-const CHANNEL_ICONS: Record<ContactChannel["id"], React.ReactNode> = {
-  whatsapp: <WhatsAppIcon className="size-5" />,
-  call: <Phone className="size-5" />,
-  sms: <MessageSquareText className="size-5" />,
-  email: <Mail className="size-5" />,
-};
-
-const CHANNEL_TINTS: Record<ContactChannel["id"], string> = {
-  whatsapp: "bg-[#25D366]/15 text-[#25D366]",
-  call: "bg-accent/15 text-accent",
-  sms: "bg-fg/10 text-fg",
-  email: "bg-danger/15 text-danger",
-};
 
 /** Site-wide floating action button — a fast path to WhatsApp/call/text/email. */
 export function ContactFab() {

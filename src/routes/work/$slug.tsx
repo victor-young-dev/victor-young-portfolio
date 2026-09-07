@@ -79,7 +79,7 @@ function WorkDetail() {
 
           <Reveal delay={0.12}>
             <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.6fr)]">
-              <p className="text-muted max-w-2xl text-base leading-relaxed">{item.body}</p>
+              <p className="text-muted max-w-2xl text-base leading-relaxed text-justify [hyphens:auto]">{item.body}</p>
               <div>
                 <p className="text-subtle font-mono text-2xs tracking-[0.16em] uppercase">Tags</p>
                 <div className="mt-3 flex flex-wrap gap-2">

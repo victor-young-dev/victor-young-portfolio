@@ -41,7 +41,7 @@ function AboutPage() {
                 </p>
               </Reveal>
               <Reveal delay={0.08}>
-                <div className="text-muted mt-6 space-y-4 text-base leading-relaxed">
+                <div className="text-muted mt-6 space-y-4 text-base leading-relaxed text-justify [hyphens:auto]">
                   <p>
                     I’m a Computer Science graduate, product designer, software developer, and
                     venture builder. My work sits at the intersection of technology, design,
@@ -128,7 +128,7 @@ function AboutPage() {
                     {job.dates}
                   </p>
                 </div>
-                <p className="text-muted text-sm leading-relaxed">{job.copy}</p>
+                <p className="text-muted text-sm leading-relaxed text-justify [hyphens:auto]">{job.copy}</p>
               </li>
             ))}
           </ol>
@@ -137,7 +137,7 @@ function AboutPage() {
             <h2 className="font-display mt-24 text-3xl tracking-tight sm:text-4xl">
               Leadership, outside RayzorVerse
             </h2>
-            <p className="text-muted mt-4 max-w-2xl text-base leading-relaxed">
+            <p className="text-muted mt-4 max-w-2xl text-base leading-relaxed text-justify [hyphens:auto]">
               Not everything I do sits inside the ecosystem. Some of it is a leadership role held
               elsewhere — kept distinct here, on purpose.
             </p>
@@ -154,7 +154,7 @@ function AboutPage() {
                       {l.year} · {l.role}
                     </p>
                     <h3 className="font-display mt-3 text-3xl tracking-tight">{l.title}</h3>
-                    <p className="text-muted mt-4 text-sm leading-relaxed sm:text-base">{l.copy}</p>
+                    <p className="text-muted mt-4 text-sm leading-relaxed text-justify sm:text-base [hyphens:auto]">{l.copy}</p>
                   </div>
                 </article>
               </Reveal>

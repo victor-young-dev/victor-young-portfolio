@@ -1,11 +1,12 @@
-import { useState, type FormEvent } from "react";
+import { type FormEvent, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { useSiteContent } from "@/lib/site-content-context";
 import { PageShell } from "@/components/site/page-shell";
 import { Button } from "@/components/ui/button";
-import { Magnetic } from "@/components/site/magnetic";
 import { Reveal } from "@/components/site/reveal";
+import { CONTACT_CHANNELS } from "@/lib/personal-contact";
+import { CHANNEL_ICONS, CHANNEL_TINTS } from "@/components/site/contact-channel-ui";
 
 export const Route = createFileRoute("/contact")({ component: ContactPage });
 
@@ -22,15 +23,6 @@ function ContactPage() {
     toast("Opening your mail client");
   };
 
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(SITE.email);
-      toast("Email copied");
-    } catch {
-      toast(SITE.email);
-    }
-  };
-
   return (
     <PageShell>
       <main className="px-5 pt-28 pb-24 sm:px-8 sm:pt-36 sm:pb-32">
@@ -43,43 +35,36 @@ function ContactPage() {
           </Reveal>
           <div className="mt-12 grid gap-12 lg:grid-cols-2">
             <Reveal delay={0.08}>
-              <p className="text-muted max-w-md text-base leading-relaxed">
+              <p className="text-muted max-w-md text-base leading-relaxed text-justify [hyphens:auto]">
                 Product roles, venture partnerships, and selected collaborations. If you’re building
                 something worth the effort and need a builder who can hold design, software, and the
                 brand — write.
               </p>
-              <div className="mt-8 space-y-3 text-sm">
-                <p>
-                  <button type="button" onClick={copy} className="text-fg hover:text-accent">
-                    {SITE.email}
-                  </button>
-                </p>
-                {SITE.phones.map((p) => (
-                  <p key={p}>
-                    <a href={`tel:${p.replace(/\s/g, "")}`} className="text-muted hover:text-fg">
-                      {p}
-                    </a>
-                  </p>
+              <div className="mt-8 flex flex-col gap-3">
+                {CONTACT_CHANNELS.map((c) => (
+                  <a
+                    key={c.id}
+                    href={c.href}
+                    target={c.id === "whatsapp" ? "_blank" : undefined}
+                    rel={c.id === "whatsapp" ? "noreferrer" : undefined}
+                    className="group flex items-center justify-between gap-4 rounded-2xl bg-bg-elevated p-4 shadow-[var(--shadow-border)] transition-shadow hover:shadow-[var(--shadow-border-hover)] sm:p-5"
+                  >
+                    <span className="min-w-0 text-sm sm:text-base">{c.phrase}</span>
+                    <span
+                      className={`grid size-11 shrink-0 place-items-center rounded-full transition-transform duration-200 group-hover:scale-110 ${CHANNEL_TINTS[c.id]}`}
+                      aria-hidden
+                    >
+                      {CHANNEL_ICONS[c.id]}
+                    </span>
+                  </a>
                 ))}
-                <p className="text-subtle">{SITE.location}</p>
               </div>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Magnetic>
-                  <Button type="button" size="lg" onClick={copy}>
-                    Copy email
-                  </Button>
-                </Magnetic>
-                <Button asChild size="lg" variant="outline">
-                  <a href={SITE.whatsapp} target="_blank" rel="noreferrer">
-                    WhatsApp
-                  </a>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <a href={SITE.linkedin} target="_blank" rel="noreferrer">
-                    LinkedIn
-                  </a>
-                </Button>
-              </div>
+              <p className="text-subtle mt-6 text-sm">
+                <a href={`mailto:${SITE.email}`} className="hover:text-fg transition-colors">
+                  {SITE.email}
+                </a>{" "}
+                · {SITE.location}
+              </p>
             </Reveal>
             <Reveal delay={0.12}>
               <form
@@ -120,7 +105,7 @@ function ContactPage() {
               <div className="h-full rounded-2xl bg-bg-elevated p-6 shadow-[var(--shadow-border)] sm:p-8">
                 <p className="text-subtle font-mono text-2xs tracking-[0.16em] uppercase">Show some love</p>
                 <h2 className="font-display mt-2 text-2xl tracking-tight">Support the work.</h2>
-                <p className="text-muted mt-3 text-sm leading-relaxed">
+                <p className="text-muted mt-3 text-sm leading-relaxed text-justify [hyphens:auto]">
                   A lot of what’s here is built independently, through long nights and constant
                   iteration. If something helped you or made you curious about what’s next, say so.
                 </p>
@@ -137,7 +122,7 @@ function ContactPage() {
               <div className="h-full rounded-2xl bg-bg-elevated p-6 shadow-[var(--shadow-border)] sm:p-8">
                 <p className="text-subtle font-mono text-2xs tracking-[0.16em] uppercase">Backing RayzorVerse</p>
                 <h2 className="font-display mt-2 text-2xl tracking-tight">Interested in investing?</h2>
-                <p className="text-muted mt-3 text-sm leading-relaxed">
+                <p className="text-muted mt-3 text-sm leading-relaxed text-justify [hyphens:auto]">
                   RayzorVerse is building a connected ecosystem across software, brand, and knowledge
                   services. If you’re exploring venture partnerships or early backing, let’s talk
                   specifics.
